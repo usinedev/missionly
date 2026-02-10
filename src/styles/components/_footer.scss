@@ -1,0 +1,136 @@
+@use '../variables' as *;
+
+footer {
+    //temp
+    margin-top: 2000px;
+    .footer-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+
+        .foot {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: start;
+            justify-content: center;
+            gap: 32px;
+            padding: 40px 0;
+            border-top: 1px solid $ui-border;
+            border-bottom: 1px solid $ui-border;
+
+            .logoLinks {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                align-items: start;
+                gap: 32px;
+                svg {
+                    width: 200px;
+                }
+
+                .socials {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    gap: 32px;
+                    
+                    a {
+                        width: 32px;
+                        height: 32px;
+                        svg {
+                            height: 100%;
+                        }
+                    }
+                }
+            }
+
+            .navLinks {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                align-items: start;
+                gap: 32px;
+                
+                .column {
+                    width: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 8px;
+                    
+                    span.navTitle {
+                        color: $white-main;
+                        font-size: 18px;
+                        font-weight: 600;
+                        margin-bottom: 8px;
+                    }
+                    span.link {
+                        color: $white-main;
+                        font-size: 18px;
+                        font-weight: 200;
+                        white-space: nowrap;
+                    }
+                }
+            }
+        }
+
+        .bottomInfos {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: start;
+            justify-content: center;
+            padding-bottom: 20px;
+            gap: 8px;
+
+            span {
+                color: $white-muted;
+                font-size: 14px;
+                font-weight: 300;
+            }
+            .separator {
+                display: none;
+            }
+        }
+    }
+}
+
+@media (min-width: 1100px) {
+    footer .footer-container {
+        .foot {
+            flex-direction: row;
+
+            .logoLinks .socials {
+                width: 140px;
+                a {
+                    width: 32px;
+                    height: 20px;
+                }
+            }
+
+            .navLinks {
+                flex-direction: row;
+                gap: 16px;
+
+                .column {
+                span.navTitle {
+                    padding-bottom: 16px;
+                }
+
+                span.link {
+                    font-size: 16px;
+                }
+                }
+            }
+        }
+        .bottomInfos {
+            flex-direction: row;
+
+            .separator {
+                display: block;
+            }
+        }
+    }
+}

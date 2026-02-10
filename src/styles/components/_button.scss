@@ -1,0 +1,31 @@
+@use '../variables' as *;
+
+.btn {
+    font-family: $font-sans;
+    font-weight: 500;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border: 1px solid $ui-border;
+    border-radius: 8px;
+
+    &.btn-primary {
+        background-color: $white-main;
+        color: $accent-main;
+    }
+
+    &.btn-secondary {
+        background-color: $black-soft;
+        color: $white-main;
+    }
+
+    &.btn-big {
+        padding: 16px 32px;
+    }
+
+    &.btn-small {
+        padding: 12px 24px;
+    }
+}
