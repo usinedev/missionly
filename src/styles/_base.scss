@@ -5,6 +5,39 @@ body {
     background-color: $black-main;
 }
 
+h1, h2, h3 {
+    font-family: $font-serif;
+    color: $white-main;
+}
+
+h1 {
+    font-size: 32px;
+    font-weight: 700;
+}
+@media (min-width: 1100px) {
+h1 {
+    font-size: 48px;
+}
+}
+
+h2 {
+    font-size: 32px;
+    font-weight: 600;
+}
+
+h3 {
+    font-size: 24px;
+    font-weight: 500;
+}
+
+.p {
+    color: $white-main;
+    font-family: $font-sans;
+    font-size: 18px;
+    line-height: 28px;
+    font-weight: 300;
+}
+
 .section {
     width: 100%;
 }
