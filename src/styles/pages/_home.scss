@@ -58,10 +58,10 @@
                 justify-content: center;
                 gap: 12px;
                 width: 45%;
-                height: 100px;
                 border-radius: 8px;
                 background-color: $black-overlay;
                 padding: 8px 12px;
+                aspect-ratio: 1/1;
 
                 img {
                     width: 40px;

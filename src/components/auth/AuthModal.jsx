@@ -3,12 +3,16 @@ import Button from "../ui/Button"
 import PillButton from "../ui/PillButton"
 import Input from "../ui/Input"
 import CloseIcon from "../../assets/icons/close.svg?react";
+import FreelanceIcon from "../../assets/icons/type-freelance.svg?react";
+import SocieteIcon from "../../assets/icons/type-societe.svg?react";
+import ComptableIcon from "../../assets/icons/type-comptable.svg?react";
 
-function AuthModal() {
+function AuthModal({ isOpen, onClose, onLoginSuccess, onRegisterSuccess }) {
     const [mode, setMode] = useState("connexion")
     const [showErrors, setShowErrors] = useState(false)
 
     const [form, setForm] = useState({
+        accountType: "",
         firstName: "",
         lastName: "",
         email: "",
@@ -20,6 +24,10 @@ function AuthModal() {
         setMode(prev => (prev === "connexion" ? "inscription" : "connexion"))
         // Masquer les erreurs au switch
         setShowErrors(false)
+    }
+
+    function setAccountType(value) {
+        setForm(prev => ({ ...prev, accountType: value }));
     }
 
     function handleChange(e) {
@@ -36,11 +44,12 @@ function AuthModal() {
         () => form.confirmPassword.length > 0 && form.confirmPassword === form.password,
         [form.confirmPassword, form.password]
     )
+    const accountTypeOk = useMemo(() => form.accountType !== "", [form.accountType]);
 
     const isValid = useMemo(() => {
         if (mode === "connexion") return emailOk && passwordOk
-        return emailOk && passwordOk && firstNameOk && lastNameOk && confirmOk
-    }, [mode, emailOk, passwordOk, firstNameOk, lastNameOk, confirmOk])
+        return accountTypeOk && emailOk && passwordOk && firstNameOk && lastNameOk && confirmOk
+    }, [mode, accountTypeOk, emailOk, passwordOk, firstNameOk, lastNameOk, confirmOk])
 
     const fieldErrors = useMemo(() => {
         const errors = {}
@@ -49,38 +58,64 @@ function AuthModal() {
         if (!passwordOk) errors.password = "Minimum 8 caractères."
 
         if (mode === "inscription") {
-        if (!firstNameOk) errors.firstName = "Minimum 2 caractères."
-        if (!lastNameOk) errors.lastName = "Minimum 2 caractères."
-        if (!confirmOk) errors.confirmPassword = "Ne correspond pas au mot de passe."
+            if (!firstNameOk) errors.firstName = "Minimum 2 caractères."
+            if (!lastNameOk) errors.lastName = "Minimum 2 caractères."
+            if (!confirmOk) errors.confirmPassword = "Ne correspond pas au mot de passe."
+            if (mode === "inscription" && !accountTypeOk) {
+            errors.accountType = "Choisissez un profil (Freelance, Société ou Comptable).";
+            }
         }
 
         return errors
-    }, [mode, emailOk, passwordOk, firstNameOk, lastNameOk, confirmOk])
+    }, [mode, accountTypeOk, emailOk, passwordOk, firstNameOk, lastNameOk, confirmOk])
     
     function handleSubmit(e) {
         e.preventDefault();
         setShowErrors(true);
 
-        if (isValid) {
-            console.log("submit", { mode, form });
+        // Si invalide -> focus sur le premier champ en erreur
+        if (!isValid) {
+            const order =
+            mode === "inscription"
+                ? ["firstName", "lastName", "email", "password", "confirmPassword"]
+                : ["email", "password"];
+
+            const firstInvalid = order.find((k) => fieldErrors[k]);
+            if (firstInvalid) {
+            const el = document.querySelector(`[name="${firstInvalid}"]`);
+            el?.focus();
+            }
             return;
         }
 
-        // focus premier champ invalide
-        const order = mode === "inscription"
-            ? ["firstName", "lastName", "email", "password", "confirmPassword"]
-            : ["email", "password"];
+        // Si valide 
+        if (mode === "connexion") {
+            console.log("LOGIN", { form });
 
-        const firstInvalid = order.find((k) => fieldErrors[k]);
-        if (firstInvalid) {
-            const el = document.querySelector(`[name="${firstInvalid}"]`);
-            el?.focus();
+            // fermer la modale après connexion
+            onClose?.(); // ou onLoginSuccess?.()
+            return;
         }
+
+        // mode === "inscription"
+        console.log("REGISTER", { form });
+
+        // Après inscription on repasse en mode connexion
+        setMode("connexion");
+        setShowErrors(false);
+
+        // garder email + noms, mais reset mdp
+        setForm((prev) => ({
+            ...prev,
+            password: "",
+            confirmPassword: "",
+        }));
     }
 
+
     return (
-        <div className="authModal">
-        <button className="closeBtn" type="button">
+        <div className={`authModal ${isOpen ? "isOpen" : ""}`}>
+        <button className="closeBtn" onClick={onClose} type="button">
             <CloseIcon className="close-icon" aria-hidden="true" />
         </button>
 
@@ -93,6 +128,43 @@ function AuthModal() {
             </p>
 
             {mode === "inscription" && (
+                <>
+                <div className="field">
+                  <div className="accountType">
+                    <button
+                    type="button"
+                    className={`typeCard ${form.accountType === "freelance" ? "is-selected" : ""}`}
+                    onClick={() => setAccountType("freelance")}
+                    aria-pressed={form.accountType === "freelance"}
+                    >
+                        <FreelanceIcon aria-hidden="true" />
+                        <span>Freelance</span>
+                    </button>
+
+                    <button
+                    type="button"
+                    className={`typeCard ${form.accountType === "societe" ? "is-selected" : ""}`}
+                    onClick={() => setAccountType("societe")}
+                    aria-pressed={form.accountType === "societe"}
+                    >
+                        <SocieteIcon aria-hidden="true" />
+                        <span>Société</span>
+                    </button>
+
+                    <button
+                    type="button"
+                    className={`typeCard ${form.accountType === "comptable" ? "is-selected" : ""}`}
+                    onClick={() => setAccountType("comptable")}
+                    aria-pressed={form.accountType === "comptable"}
+                    >
+                        <ComptableIcon aria-hidden="true" />
+                        <span>Comptable</span>
+                    </button>
+                    </div>
+                    {showErrors && fieldErrors.accountType && (
+                    <p className="fieldError">{fieldErrors.accountType}</p>
+                    )}
+                </div>
                 <div className="names">
                 <div className="field">
                     <Input
@@ -124,6 +196,7 @@ function AuthModal() {
                     )}
                 </div>
                 </div>
+                </>
             )}
 
             <div className="field">

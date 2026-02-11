@@ -56,3 +56,24 @@ input:focus {
         color: $white-muted;
     }
 }
+
+/* Correction Auto-fill degeu */
+.input-form input:-webkit-autofill,
+.input-form input:-webkit-autofill:hover,
+.input-form input:-webkit-autofill:focus,
+.input-form input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 1000px $black-soft inset !important;
+    -webkit-text-fill-color: $white-main !important;
+    caret-color: $white-main;
+
+    border-radius: 8px;
+    border: 1px solid $ui-border !important;
+
+    transition: background-color 9999s ease-in-out 0s;
+    font-family: $font-sans;
+    font-size: 16px;
+}
+
+.input-form input:-webkit-autofill:focus {
+    outline: 2px solid $accent-main;
+}

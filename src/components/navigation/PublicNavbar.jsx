@@ -2,8 +2,9 @@ import { useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import Logo from "../../assets/icons/Logo.svg?react";
 import Button from "../ui/Button";
+import HomeLogoLink from "./HomeLogoLink";
 
-function PublicNavbar() {
+function PublicNavbar({ onOpenAuthModal }) {
   const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -27,13 +28,9 @@ function PublicNavbar() {
   return (
     <header className={`section ${isMenuOpen ? "is-open" : ""}`}>
       <div className="container">
-        <Logo
-          className="navbar-logo"
-          aria-label="Missionly"
-          role="button"
-          tabIndex={0}
-          onClick={() => navigate("/")}
-          onKeyDown={(e) => e.key === "Enter" && navigate("/")}
+        <HomeLogoLink
+            className="navbar-logoBtn"
+            onBeforeNavigate={closeMenu}
         />
 
         <button
@@ -58,7 +55,7 @@ function PublicNavbar() {
           <NavLink to="/dashboard" className={linkClass}>
             Dashboard
           </NavLink>
-          <Button size="small">S'identifier</Button>
+          <Button size="small" onClick={onOpenAuthModal}>S'identifier</Button>
         </nav>
       </div>
 
@@ -95,7 +92,12 @@ function PublicNavbar() {
           </NavLink>
 
           <div className="mobileNav__cta">
-            <Button size="small" onClick={closeMenu}>
+            <Button
+                size="small"
+                onClick={() => {
+                closeMenu();
+                onOpenAuthModal();
+              }}>
               S'identifier
             </Button>
           </div>

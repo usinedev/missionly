@@ -1,38 +1,134 @@
-@use '../variables' as *;
+@use "../variables" as *;
 
 .btn {
-    font-family: $font-sans;
-    font-weight: 500;
-    font-size: 16px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    border: 1px solid $ui-border;
-    border-radius: 8px;
+  font-family: $font-sans;
+  font-weight: 500;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  border: 1px solid $ui-border;
+  border-radius: 10px;
+  cursor: pointer;
+
+  position: relative;
+  overflow: visible;
+
+  transition:
+    background-color .25s ease,
+    color .25s ease,
+    border-color .25s ease,
+    transform .2s cubic-bezier(.2,.8,.2,1),
+    box-shadow .25s ease,
+    opacity .25s ease;
+
+  transform: translateZ(0);
+  will-change: transform;
+
+  &:focus-visible {
+    outline: 2px solid rgba($accent-main, 0.85);
+    outline-offset: 3px;
+  }
+
+  &:active {
+    transform: translateY(0) scale(0.985);
+  }
+
+  &.btn-big {
+    padding: 16px 32px;
+  }
+
+  &.btn-small {
+    padding: 12px 24px;
+  }
+
+  &.btn-primary {
+    background-color: $white-main;
+    color: $accent-main;
+    border-color: rgba($accent-main, 0.25);
+  }
+
+  &.btn-secondary {
+    background-color: $black-soft;
+    color: $white-main;
+  }
+
+  &.btn-disabled {
+    background-color: $black-soft;
+    color: $white-muted;
+    cursor: default !important;
+    opacity: 0.6;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .btn.btn-primary::after,
+  .btn.btn-secondary::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    border: 2px solid rgba($accent-main, 0.75);
+    opacity: 0;
+    transition:
+      opacity .18s ease,
+      inset .32s cubic-bezier(.16, 1, .3, 1);
+    transition-delay: 0s, .06s;
+    pointer-events: none;
+  }
+
+  .btn.btn-primary:hover,
+  .btn.btn-secondary:hover {
+    transform: translateY(-2px);
+    border-color: rgba($accent-main, 0.45);
+    box-shadow: 0 14px 44px rgba(0, 0, 0, 0.38);
+  }
+
+  .btn.btn-primary:hover::after,
+  .btn.btn-secondary:hover::after {
+    opacity: 1;
+    inset: -7px;
+  }
+
+  .btn.btn-primary:not(:hover)::after,
+  .btn.btn-secondary:not(:hover)::after {
+    transition-delay: 0s, 0s;
+  }
+
+  .btn.btn-primary:active,
+  .btn.btn-secondary:active {
+    transform: translateY(0) scale(0.985);
+    box-shadow: 0 8px 26px rgba(0, 0, 0, 0.35);
+  }
+
+  .btn.btn-primary:active::after,
+  .btn.btn-secondary:active::after {
+    opacity: 1;
+    inset: 0;
+    transition:
+      opacity .12s ease,
+      inset .12s ease;
+    transition-delay: 0s, 0s;
+  }
+
+  .btn.btn-disabled:hover {
+    transform: none;
+    box-shadow: none;
+    border-color: $ui-border;
+  }
+
+  .btn.btn-disabled::after {
+    content: none;
+  }
+}
+
+
+
+.navbar-logoBtn {
+    width: 140px;
+    background-color: unset;
+    border: none;
     cursor: pointer;
-    transition: all .3s;
-
-    &.btn-primary {
-        background-color: $white-main;
-        color: $accent-main;
-    }
-
-    &.btn-secondary {
-        background-color: $black-soft;
-        color: $white-main;
-    }
-    &.btn-disabled {
-        background-color: $black-soft;
-        color: $white-muted;
-        cursor: default!important;
-    }
-
-    &.btn-big {
-        padding: 16px 32px;
-    }
-
-    &.btn-small {
-        padding: 12px 24px;
-    }
 }

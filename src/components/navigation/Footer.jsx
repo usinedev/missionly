@@ -1,5 +1,5 @@
 import { NavLink, useNavigate } from "react-router-dom";
-import Logo from "../../assets/icons/Logo.svg?react";
+import HomeLogoLink from "./HomeLogoLink";
 import TwitterLogo from "../../assets/icons/TwitterLogo.svg?react";
 import InstagramLogo from "../../assets/icons/InstagramLogo.svg?react";
 import LinkedinLogo from "../../assets/icons/LinkedinLogo.svg?react";
@@ -11,13 +11,8 @@ function Footer() {
 
             <div className="foot">
                 <div className="logoLinks">
-                    <Logo
-                        className="navbar-logo"
-                        aria-label="Missionly"
-                        role="button"
-                        tabIndex={0}
-                        onClick={() => navigate("/")}
-                        onKeyDown={(e) => e.key === "Enter" && navigate("/")}
+                    <HomeLogoLink
+                        className="navbar-logoBtn"
                     />
                     <div className="socials">
                         <a href="https://x.com" target="_blank"><TwitterLogo/></a>

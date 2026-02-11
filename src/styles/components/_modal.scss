@@ -1,14 +1,25 @@
 @use '../variables' as *;
 
 .authModal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 200%);
     padding: 16px;
-    width: 560px;
+    width: 90vw;
     display: flex;
     flex-direction: column;
     align-items: end;
     border-radius: 32px;
     background-color: $black-form-bg;
     border: 1px solid $ui-border;
+    backdrop-filter: blur(10px);
+    transition: all .3s;
+    z-index: 1000;
+
+    &.isOpen {
+        transform: translate(-50%, -50%);
+    }
 
     .closeBtn {
         padding: 12px;
@@ -24,7 +35,7 @@
 
     .authContent {
         width: 100%;
-        padding: 0 64px 64px 64px;
+        padding: 0 24px 24px 24px;
         display: flex;
         flex-direction: column;
         align-items: start;
@@ -35,7 +46,7 @@
             display: flex;
             flex-direction: column;
             align-items: start;
-            gap: 32px;
+            gap: 16px;
 
             .modalTitle {
                 font-size: 20px;
@@ -46,7 +57,7 @@
             .names {
                 width: 100%;
                 display: flex;
-                gap: 32px;
+                gap: 16px;
             }
 
             .field, .input-form, button {
@@ -66,6 +77,48 @@
             flex-direction: column;
             gap: 6px;
             }
+
+            .accountType {
+                width: 100%;
+                display: flex;
+                flex-direction: row;
+                gap: 16px;
+
+                .typeCard {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+                    gap: 12px;
+                    width: 30%;
+                    background-color: $black-soft;
+                    border: 1px solid $ui-border;
+                    transition: all .3s;
+                    border-radius: 8px;
+                    aspect-ratio: 1/1;
+
+                    svg {
+                        height: 32px;
+                        fill: $white-muted;
+                    }
+
+                    span {
+                        font-size: 14px;
+                        font-weight: 400;
+                        color: $white-muted;
+                    }
+
+                    &.is-selected {
+                        border: 1px solid $white-main;
+                        svg {
+                            fill: $white-main;
+                        }
+                        span {
+                            color: $white-main;
+                        }
+                    }
+                }
+            }
         
             .fieldError {
             font-size: 12px;
@@ -75,4 +128,32 @@
         }
     }
 
+}
+
+@media (min-width: 1100px) {
+.authModal {
+    width: 560px;
+
+    .authContent {
+        padding: 0 64px 64px 64px;
+
+        form {
+            gap: 32px;
+
+            .names {
+                gap: 32px;
+            }
+
+            .accountType{
+                gap: 32px;
+
+                .typeCard {
+                    svg {
+                        height: 48px;
+                    }
+                }
+            }
+        }
+    }
+}    
 }
