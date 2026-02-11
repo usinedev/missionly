@@ -13,8 +13,8 @@ function Home() {
     const [query, setQuery] = useState("");
 
     return (
-        <main className='main-home section'>
-            <section className='container hero'>
+        <main className='main-home'>
+            <section className='section hero'>
                 <div className="textHero">
                     <h1>Des missions claires.<br/>Des collaborations durables.</h1>
                     <p className="p">Missionly est une plateforme qui met en relation freelances et entreprises autour de missions structurées, pensées pour une vraie collaboration - pas pour des prestations jetables.</p>
@@ -54,7 +54,19 @@ function Home() {
                 </div>
             </section>
 
-            <AuthModal></AuthModal>
+            <section className='section collab'>
+                <div className="container">
+                    <div className="left">
+                        <h2>Prêt à collaborer autrement?</h2>
+                        <p className='p'>Rejoignez Missionly et découvrez un espace où freelances et entreprises travaillent ensemble de manière structurée et transparente</p>
+                        <div className="btns">
+                            <Button variant='secondary' size='small'>Publier une mission</Button>
+                            <Button variant='primary' size='small'>Trouver une mission</Button>
+                        </div>
+                    </div>
+                    <AuthModal defaultMode='inscription'></AuthModal>
+                </div>
+            </section>
         </main>
     )
 }

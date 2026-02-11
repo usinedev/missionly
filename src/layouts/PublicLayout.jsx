@@ -24,26 +24,25 @@ function PublicLayout() {
   const closeAuth = () => setIsAuthOpen(false);
 
   return (
-    <>
-      <PublicNavbar onOpenAuthModal={openAuth} />
+<>
+  <div className={isAuthOpen ? "app-disabled" : ""}>
+    <PublicNavbar onOpenAuthModal={openAuth} />
+    <main>
+      <Outlet />
+    </main>
+    <Footer />
+  </div>
 
-      <main>
-        <Outlet />
-      </main>
+  {isAuthOpen && <div className="modalOverlay" onClick={closeAuth} />}
 
-      <Footer />
+  <AuthModal
+    isOpen={isAuthOpen}
+    onClose={closeAuth}
+    onLoginSuccess={closeAuth}
+  />
+</>
 
-      <AuthModal
-        isOpen={isAuthOpen}
-        onClose={closeAuth}
-        onLoginSuccess={closeAuth}
-        // onRegisterSuccess={() => {
-        //   // tu veux "inscription -> connexion"
-        //   // la modale reste ouverte, AuthModal gère juste le switch
-        // }}
-      />
-    </>
-  );
+);
 }
 
 export default PublicLayout;

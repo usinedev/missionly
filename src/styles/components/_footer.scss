@@ -1,8 +1,6 @@
 @use '../variables' as *;
 
 footer {
-    //temp
-    margin-top: 200px;
     .footer-container {
         display: flex;
         flex-direction: column;
@@ -43,6 +41,19 @@ footer {
                         height: 32px;
                         svg {
                             height: 100%;
+                            scale: 1;
+                            
+                            path {
+                                fill: $white-muted;
+                                transition: all .3s;
+                            }
+
+                            &:hover {
+                                scale: 1.1;
+                                path {
+                                    fill: $white-main;
+                                }
+                            }
                         }
                     }
                 }
@@ -68,9 +79,9 @@ footer {
                         margin-bottom: 8px;
                     }
                     span.link {
-                        color: $white-main;
+                        color: $white-muted;
                         font-size: 18px;
-                        font-weight: 200;
+                        font-weight: 300;
                         white-space: nowrap;
                     }
                 }

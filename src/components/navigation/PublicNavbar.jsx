@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import Logo from "../../assets/icons/Logo.svg?react";
 import Button from "../ui/Button";
 import HomeLogoLink from "./HomeLogoLink";
 

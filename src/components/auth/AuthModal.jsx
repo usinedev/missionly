@@ -7,8 +7,8 @@ import FreelanceIcon from "../../assets/icons/type-freelance.svg?react";
 import SocieteIcon from "../../assets/icons/type-societe.svg?react";
 import ComptableIcon from "../../assets/icons/type-comptable.svg?react";
 
-function AuthModal({ isOpen, onClose, onLoginSuccess, onRegisterSuccess }) {
-    const [mode, setMode] = useState("connexion")
+function AuthModal({ isOpen, onClose, onLoginSuccess, onRegisterSuccess, defaultMode= "connexion" }) {
+    const [mode, setMode] = useState(defaultMode)
     const [showErrors, setShowErrors] = useState(false)
 
     const [form, setForm] = useState({
@@ -114,7 +114,7 @@ function AuthModal({ isOpen, onClose, onLoginSuccess, onRegisterSuccess }) {
 
 
     return (
-        <div className={`authModal ${isOpen ? "isOpen" : ""}`}>
+        <div className={`authModal ${isOpen ? "isOpen" : ""} ${mode}`}>
         <button className="closeBtn" onClick={onClose} type="button">
             <CloseIcon className="close-icon" aria-hidden="true" />
         </button>
