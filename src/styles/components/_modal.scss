@@ -1,0 +1,78 @@
+@use '../variables' as *;
+
+.authModal {
+    padding: 16px;
+    width: 560px;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    border-radius: 32px;
+    background-color: $black-form-bg;
+    border: 1px solid $ui-border;
+
+    .closeBtn {
+        padding: 12px;
+        background-color: $black-light;
+        border-radius: 30px;
+        border: none;
+        cursor: pointer;
+        svg {
+            width: 12px;
+            height: 12px;
+        }
+    }
+
+    .authContent {
+        width: 100%;
+        padding: 0 64px 64px 64px;
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        gap: 48px;
+
+        form {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: start;
+            gap: 32px;
+
+            .modalTitle {
+                font-size: 20px;
+                font-weight: 600;
+                color: $white-main;
+            }
+
+            .names {
+                width: 100%;
+                display: flex;
+                gap: 32px;
+            }
+
+            .field, .input-form, button {
+                width: 100%;
+            }
+
+            .disclaimer {
+                font-size: 14px;
+                font-weight: 300;
+                font-style: italic;
+                color: $white-muted;
+                width: 100%;
+                line-height: 140%
+            }
+            .field {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            }
+        
+            .fieldError {
+            font-size: 12px;
+            line-height: 1.2;
+            color: #ff6b6b;
+            }    
+        }
+    }
+
+}

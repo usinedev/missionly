@@ -1,0 +1,51 @@
+@use '../variables' as *;
+
+.switchContainer {
+    background-color: $black-main;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border-radius: 35px;
+    padding: 4px;
+    position: relative;
+    border: none;
+
+    .switchBtn {
+        padding: 12px 16px;
+        border-radius: 32px;
+        font-size: 16px;
+        font-weight: 500;
+        transition: all .3s;
+    }
+
+    .fakeBtn {
+        color: $white-muted;
+    }
+
+    .pillBtn {
+        position: absolute;
+        z-index: 50;
+        background-color: $black-soft;
+        color: $white-main;
+        top: 50%;
+        transform: translateY(-50%);
+        white-space: nowrap;
+    }
+
+    .connexion {
+        left: 4px;
+    }
+
+    .inscription {
+        left: 142px;
+    }
+
+}
+
+
+
+//AFAC
+.temp {
+    background-color: $black-light;
+    padding: 20px;
+}

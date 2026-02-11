@@ -11,6 +11,7 @@
     border: 1px solid $ui-border;
     border-radius: 8px;
     cursor: pointer;
+    transition: all .3s;
 
     &.btn-primary {
         background-color: $white-main;
@@ -20,6 +21,11 @@
     &.btn-secondary {
         background-color: $black-soft;
         color: $white-main;
+    }
+    &.btn-disabled {
+        background-color: $black-soft;
+        color: $white-muted;
+        cursor: default!important;
     }
 
     &.btn-big {

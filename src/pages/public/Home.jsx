@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import Button from '../../components/ui/Button'
+import AuthModal from '../../components/auth/AuthModal';
 import Input from '../../components/ui/Input'
 import data from "@/assets/icons/cat-data.png";
 import design from "@/assets/icons/cat-design.png";
@@ -52,6 +53,8 @@ function Home() {
                     </div>
                 </div>
             </section>
+
+            <AuthModal></AuthModal>
         </main>
     )
 }
