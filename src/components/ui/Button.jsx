@@ -19,7 +19,9 @@ function Button({
         <Icon className="btn-icon" />
       )}
 
-      <span className="btn-label">{children}</span>
+      {children && (
+        <span className="btn-label">{children}</span>
+      )}
 
       {Icon && iconPosition === "right" && (
         <Icon className="btn-icon" />

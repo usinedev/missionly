@@ -1,6 +1,6 @@
 import { useState } from 'react';
+import { useNavigate, useOutletContext } from "react-router-dom";
 import Button from '../../components/ui/Button'
-import AuthModal from '../../components/auth/AuthModal';
 import Input from '../../components/ui/Input'
 import data from "@/assets/icons/cat-data.png";
 import design from "@/assets/icons/cat-design.png";
@@ -8,9 +8,22 @@ import dev from "@/assets/icons/cat-dev.png";
 import marketing from "@/assets/icons/cat-marketing.png";
 import product from "@/assets/icons/cat-product.png";
 import support from "@/assets/icons/cat-support.png";
+import AuthModal from '../../components/auth/AuthModal';
 
 function Home() {
     const [query, setQuery] = useState("");
+    const navigate = useNavigate();
+    const { openAuth, isAuthenticated } = useOutletContext();
+
+    function goToMissions() {
+        const q = query.trim();
+        if (!q) {
+            navigate("/missions");
+        } else {
+            navigate(`/missions?q=${encodeURIComponent(q)}`);
+        }
+    }
+
 
     return (
         <main className='main-home'>
@@ -20,10 +33,33 @@ function Home() {
                     <p className="p">Missionly est une plateforme qui met en relation freelances et entreprises autour de missions structurées, pensées pour une vraie collaboration - pas pour des prestations jetables.</p>
                 </div>
                 <div className="searchSection">
-                    <Input variant="search" value={query} onChange={(e) => setQuery(e.target.value)} />
+                    <Input
+                        variant="search"
+                        value={query}
+                        onChange={(e) => setQuery(e.target.value)}
+                        onKeyDown={(e) => {
+                            if (e.key === "Enter") goToMissions();
+                        }}
+                    />
                     <div className="btns">
-                        <Button variant='secondary'>Publier une mission</Button>
-                        <Button variant='primary'>Trouver une mission</Button>
+                        <Button
+                        variant='secondary'
+                        onClick={() => {
+                            if (isAuthenticated) {
+                                navigate('/dashboard')
+                            }
+                            else {
+                                openAuth();
+                            }
+                        }}
+                        >
+                            Publier une mission
+                        </Button>
+                        <Button
+                        variant='primary'
+                        onClick={goToMissions}>
+                            Trouver une mission
+                        </Button>
                     </div>
                 </div>
                 <div className="categories">
@@ -60,11 +96,28 @@ function Home() {
                         <h2>Prêt à collaborer autrement?</h2>
                         <p className='p'>Rejoignez Missionly et découvrez un espace où freelances et entreprises travaillent ensemble de manière structurée et transparente</p>
                         <div className="btns">
-                            <Button variant='secondary' size='small'>Publier une mission</Button>
-                            <Button variant='primary' size='small'>Trouver une mission</Button>
+                        <Button
+                        variant='secondary'
+                        onClick={() => {
+                            if (isAuthenticated) {
+                                navigate('/dashboard')
+                            }
+                            else {
+                                openAuth();
+                            }
+                        }}
+                        >
+                            Publier une mission
+                        </Button>
+                        <Button
+                        variant='primary'
+                        onClick={goToMissions}>
+                            Trouver une mission
+                        </Button>
                         </div>
                     </div>
-                    <AuthModal defaultMode='inscription'></AuthModal>
+                    
+                    <AuthModal defaultMode='inscription' />
                 </div>
             </section>
         </main>

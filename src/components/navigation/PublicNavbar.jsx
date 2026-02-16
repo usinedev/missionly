@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import Button from "../ui/Button";
 import HomeLogoLink from "./HomeLogoLink";
 
-function PublicNavbar({ onOpenAuthModal }) {
-  const navigate = useNavigate();
+function PublicNavbar({ onOpenAuthModal, isAuthenticated, user, onLogout }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const linkClass = ({ isActive }) => (isActive ? "active-link" : undefined);
@@ -45,16 +44,26 @@ function PublicNavbar({ onOpenAuthModal }) {
         </button>
 
         <nav className="desktopNav">
-          <NavLink to="/" end className={linkClass}>
-            Accueil
-          </NavLink>
-          <NavLink to="/missions" className={linkClass}>
-            Missions
-          </NavLink>
-          <NavLink to="/dashboard" className={linkClass}>
-            Dashboard
-          </NavLink>
-          <Button size="small" onClick={onOpenAuthModal}>S'identifier</Button>
+            <NavLink to="/" end className={linkClass}>
+                Accueil
+            </NavLink>
+            <NavLink to="/missions" className={linkClass}>
+                Missions
+            </NavLink>
+            { isAuthenticated && (
+            <NavLink to="/dashboard" className={linkClass}>
+                Dashboard
+            </NavLink>
+            )}
+            {!isAuthenticated ? (
+            <Button size="small" onClick={onOpenAuthModal}>
+                S'identifier
+            </Button>
+            ) : (
+            <Button size="small" variant="primary" onClick={onLogout}>
+                Se déconnecter
+            </Button>
+            )}
         </nav>
       </div>
 
@@ -86,19 +95,22 @@ function PublicNavbar({ onOpenAuthModal }) {
           <NavLink to="/missions" className={linkClass} onClick={closeMenu}>
             Missions
           </NavLink>
+          { isAuthenticated && (
           <NavLink to="/dashboard" className={linkClass} onClick={closeMenu}>
             Dashboard
           </NavLink>
+          )}
 
           <div className="mobileNav__cta">
-            <Button
-                size="small"
-                onClick={() => {
-                closeMenu();
-                onOpenAuthModal();
-              }}>
-              S'identifier
+            {!isAuthenticated ? (
+            <Button size="small" onClick={() => {closeMenu(); onOpenAuthModal();}}>
+                S'identifier
             </Button>
+            ) : (
+            <Button size="small" variant="secondary" onClick={() => {closeMenu(); onOpenAuthModal();}}>
+                Se déconnecter
+            </Button>
+            )}
           </div>
         </nav>
       </aside>

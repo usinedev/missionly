@@ -61,6 +61,14 @@
     cursor: default !important;
     opacity: 0.6;
   }
+
+  svg {
+    color: currentColor;
+  }
+
+  svg path {
+    fill: currentColor;
+  }
 }
 
 @media (hover: hover) and (pointer: fine) {

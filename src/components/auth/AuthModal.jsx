@@ -90,15 +90,27 @@ function AuthModal({ isOpen, onClose, onLoginSuccess, onRegisterSuccess, default
 
         // Si valide 
         if (mode === "connexion") {
-            console.log("LOGIN", { form });
+            const userData = {
+                email: form.email.trim(),
+                accountType: "freelance",
+                firstName: "Oussama",
+                lastName: "Bin Laden",
+            };
 
-            // fermer la modale après connexion
-            onClose?.(); // ou onLoginSuccess?.()
+            onLoginSuccess?.(userData);
             return;
         }
 
         // mode === "inscription"
         console.log("REGISTER", { form });
+
+        onRegisterSuccess?.({
+            accountType: form.accountType,
+            firstName: form.firstName.trim(),
+            lastName: form.lastName.trim(),
+            email: form.email.trim(),
+        });
+
 
         // Après inscription on repasse en mode connexion
         setMode("connexion");
