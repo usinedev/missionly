@@ -15,9 +15,9 @@ function Footer() {
                         className="navbar-logoBtn"
                     />
                     <div className="socials">
-                        <a href="https://x.com" target="_blank"><TwitterLogo/></a>
-                        <a href="https://instagram.com" target="_blank"><InstagramLogo/></a>
-                        <a href="https://linkedin.com" target="_blank"><LinkedinLogo/></a>
+                        <a href="https://x.com" target="_blank" aria-label="Twitter"><TwitterLogo/></a>
+                        <a href="https://instagram.com" target="_blank" aria-label="Instagram"><InstagramLogo/></a>
+                        <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn"><LinkedinLogo/></a>
                     </div>
                 </div>
 

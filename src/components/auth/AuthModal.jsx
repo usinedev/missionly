@@ -127,7 +127,7 @@ function AuthModal({ isOpen, onClose, onLoginSuccess, onRegisterSuccess, default
 
     return (
         <div className={`authModal ${isOpen ? "isOpen" : ""} ${mode}`}>
-        <button className="closeBtn" onClick={onClose} type="button">
+        <button className="closeBtn" onClick={onClose} type="button" aria-label="Fermer la fenêtre">
             <CloseIcon className="close-icon" aria-hidden="true" />
         </button>
 

@@ -107,7 +107,7 @@ function PublicNavbar({ onOpenAuthModal, isAuthenticated, user, onLogout }) {
                 S'identifier
             </Button>
             ) : (
-            <Button size="small" variant="secondary" onClick={() => {closeMenu(); onOpenAuthModal();}}>
+            <Button size="small" variant="primary" onClick={() => {closeMenu(); onLogout();}}>
                 Se déconnecter
             </Button>
             )}
