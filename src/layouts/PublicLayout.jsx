@@ -5,7 +5,7 @@ import Footer from "../components/navigation/Footer";
 import AuthModal from "../components/auth/AuthModal";
 
 //TEMPORAIRE - Mock de données de connexion en attendant le back  
-import { getAuth, setAuth, clearAuth } from "@/services/auth.mock.js";
+import { getAuth, setAuth, clearAuth } from "@/services/auth.js";
 //Fin du bloc temporaire
 
 

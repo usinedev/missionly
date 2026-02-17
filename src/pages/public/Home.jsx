@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { useNavigate, useOutletContext } from "react-router-dom";
-import { getMissions } from '../../services/missions.mock';
+import { getMissions } from "@/services/missions.js";
 import Button from '../../components/ui/Button'
 import Input from '../../components/ui/Input'
 import data from "@/assets/icons/cat-data.png";
@@ -14,19 +14,32 @@ import MissionCard from '../../components/cards/MissionCard';
 
 function Home() {
     const [query, setQuery] = useState("");
+    const [lastMissions, setLastMissions] = useState([]);
     const navigate = useNavigate();
     const { openAuth, isAuthenticated } = useOutletContext();
     const stepsRef = useRef(null);
-    const lastMissions = getMissions().slice(-4).reverse();
 
     function goToMissions() {
         const q = query.trim();
-        if (!q) {
-            navigate("/missions");
-        } else {
-            navigate(`/missions?q=${encodeURIComponent(q)}`);
-        }
+        if (!q) navigate("/missions");
+        else navigate(`/missions?q=${encodeURIComponent(q)}`);
     }
+
+    useEffect(() => {
+        let alive = true;
+
+        (async () => {
+        const data = await getMissions();
+        if (!alive) return;
+
+        const missionsArr = (data.items ?? data ?? []);
+        setLastMissions(missionsArr.slice(-4).reverse());
+        })();
+
+        return () => {
+        alive = false;
+        };
+    }, []);
 
     useEffect(() => {
         const root = stepsRef.current;

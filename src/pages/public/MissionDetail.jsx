@@ -1,23 +1,55 @@
 import { useParams, useNavigate, NavLink } from "react-router-dom";
-import { getMissionById } from "@/services/missions.mock.js";
+import { getMissionById } from "@/services/missions.js";
 import Button from "@/components/ui/Button";
 import ArrowLeft from "@/assets/icons/ArrowLeft.svg?react";
 import ArrowRight from "@/assets/icons/ArrowRight.svg?react";
 
 function MissionDetail() {
-  const { id } = useParams();
-  const navigate = useNavigate();
+    const { id } = useParams();
+    const navigate = useNavigate();
 
-  const mission = getMissionById(id);
+    const [mission, setMission] = useState(null);
+    const [loading, setLoading] = useState(true);
 
-  if (!mission) {
-    return (
-      <main className="notFound section">
-        <p className="container">Mission introuvable.</p>
-        <Button onClick={() => navigate("/")}>Retourner à l'accueil</Button>
-      </main>
-    );
-  }
+    useEffect(() => {
+        let alive = true;
+
+        (async () => {
+        setLoading(true);
+        try {
+            const data = await getMissionById(id);
+            if (!alive) return;
+            setMission(data);
+        } catch {
+            if (!alive) return;
+            setMission(null);
+        } finally {
+            if (!alive) return;
+            setLoading(false);
+        }
+        })();
+
+        return () => {
+        alive = false;
+        };
+    }, [id]);
+
+    if (loading) {
+        return (
+        <main className="main-missionDetail section">
+            <div className="container">Chargement...</div>
+        </main>
+        );
+    }
+
+    if (!mission) {
+        return (
+        <main className="notFound section">
+            <p className="container">Mission introuvable.</p>
+            <Button onClick={() => navigate("/")}>Retourner à l'accueil</Button>
+        </main>
+        );
+    }
 
   return (
     <main className="main-missionDetail section">

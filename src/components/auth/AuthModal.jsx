@@ -90,15 +90,15 @@ function AuthModal({ isOpen, onClose, onLoginSuccess, onRegisterSuccess, default
 
         // Si valide 
         if (mode === "connexion") {
-            const userData = {
-                email: form.email.trim(),
-                accountType: "freelance",
-                firstName: "Oussama",
-                lastName: "Bin Laden",
-            };
+        const userData = {
+            email: form.email.trim(),
+            accountType: form.accountType || "freelance",
+            firstName: form.firstName.trim() || "Utilisateur",
+            lastName: form.lastName.trim() || "",
+        };
 
-            onLoginSuccess?.(userData);
-            return;
+        onLoginSuccess?.(userData);
+        return;
         }
 
         // mode === "inscription"
