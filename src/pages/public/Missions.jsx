@@ -69,7 +69,12 @@ function Missions() {
     return (
         <main className='main-missions section'>
             <section className='searchSection container'>
-                    <Input variant="search" value={query} onChange={(e) => setQuery(e.target.value)} />
+                    <Input
+                        variant="search"
+                        data-cy="search-input"
+                        value={query}
+                        onChange={(e) => setQuery(e.target.value)}
+                    />
                     <div className="filters">
                         <FilterBtn selectedCategory={selectedCategory} onChange={setSelectedCategory}/>
                     </div>

@@ -276,7 +276,6 @@ function AuthModal({
             )}
 
             <Button
-            className="authSubmit"
             type="submit"
             variant={isValid ? "primary" : "disabled"}
             >

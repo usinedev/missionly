@@ -61,6 +61,7 @@ function Home() {
                 <div className="searchSection">
                     <Input
                         variant="search"
+                        data-cy="search-input"
                         value={query}
                         onChange={(e) => setQuery(e.target.value)}
                         onKeyDown={(e) => {
@@ -70,6 +71,7 @@ function Home() {
                     <div className="btns">
                         <Button
                         variant='secondary'
+                        data-cy="publish-mission-btn"
                         onClick={() => {
                             if (isAuthenticated) {
                                 navigate('/dashboard')
@@ -83,6 +85,7 @@ function Home() {
                         </Button>
                         <Button
                         variant='primary'
+                        data-cy="find-mission-btn"
                         onClick={goToMissions}>
                             Trouver une mission
                         </Button>
@@ -177,6 +180,7 @@ function Home() {
                         <div className="btns">
                         <Button
                         variant='secondary'
+                        data-cy="publish-mission-bottom-btn"
                         onClick={() => {
                             if (isAuthenticated) {
                                 navigate('/dashboard')
@@ -190,6 +194,7 @@ function Home() {
                         </Button>
                         <Button
                         variant='primary'
+                        data-cy="find-mission-bottom-btn"
                         onClick={goToMissions}>
                             Trouver une mission
                         </Button>

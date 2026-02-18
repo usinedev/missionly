@@ -7,6 +7,7 @@ function Button({
   type = "button",
   onClick,
   disabled = false,
+  ...props
 }) {
   return (
     <button
@@ -14,6 +15,7 @@ function Button({
       onClick={onClick}
       disabled={disabled}
       className={`btn btn-${variant} btn-${size}`}
+      {...props}
     >
       {Icon && iconPosition === "left" && (
         <Icon className="btn-icon" />
