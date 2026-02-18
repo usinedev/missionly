@@ -10,7 +10,7 @@
     gap: 20px;
     height: 100%;
     text-decoration: none;
-    transition: transform .2s ease;
+    transition: all .2s ease;
 
     .companyLogo {
         width: 48px;
@@ -92,5 +92,6 @@
 @media (hover: hover) and (pointer: fine) {
   .missionCard:hover {
     transform: translateY(-4px);
+    box-shadow: 0 0 10px 4px rgba($color: $accent-main, $alpha: 0.4);
   }
 }
