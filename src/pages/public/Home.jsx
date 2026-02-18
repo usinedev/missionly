@@ -9,6 +9,7 @@ import dev from "@/assets/icons/cat-dev.png";
 import marketing from "@/assets/icons/cat-marketing.png";
 import product from "@/assets/icons/cat-product.png";
 import support from "@/assets/icons/cat-support.png";
+import bgTest from "@/assets/images/bgTest.svg";
 import AuthModal from '../../components/auth/AuthModal';
 import MissionCard from '../../components/cards/MissionCard';
 
@@ -49,10 +50,12 @@ function Home() {
     }, []);
 
     return (
+        <>
+        <img src={bgTest} alt="Formes en svg floutées" className="bgImg" />
         <main className='main-home'>
             <section className='section hero'>
                 <div className="textHero">
-                    <h1>Des missions claires.<br/>Des collaborations durables.</h1>
+                    <h1>Des missions claires.<br/>Des collaborations durables<span className='purple'>.</span></h1>
                     <p className="p">Missionly est une plateforme qui met en relation freelances et entreprises autour de missions structurées, pensées pour une vraie collaboration - pas pour des prestations jetables.</p>
                 </div>
                 <div className="searchSection">
@@ -197,6 +200,7 @@ function Home() {
                 </div>
             </section>
         </main>
+        </>
     )
 }
 

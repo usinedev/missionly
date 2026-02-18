@@ -15,7 +15,10 @@
         align-items: center;
         justify-content: center;
         gap: 80px;
-        backdrop-filter: blur(40px);
+
+        .purple {
+            color: $accent-main;
+        }
 
         .textHero {
             width: 100%;
@@ -247,7 +250,27 @@
     }
 }
 
+.bgImg {
+    position: absolute;
+    width: 90%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+    filter: blur(100px);
+}
+
 @media (min-width: 1100px) {
+.bgImg {
+    position: absolute;
+    width: 60%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+    filter: blur(150px);
+}
+
 .main-home {
     section.hero {
         width: 50%;
