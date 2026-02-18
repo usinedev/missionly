@@ -3,6 +3,8 @@ import { defineConfig } from "cypress";
 export default defineConfig({
     allowCypressEnv: false,
 
+    projectId: "r4wabc",
+
     viewportHeight: 1000,
     viewportWidth: 1440,
 
