@@ -49,14 +49,12 @@ function PublicLayout() {
 <>
   <div className={isAuthOpen ? "app-disabled" : ""}>
     <PublicNavbar
-    onOpenAuthModal={openAuth}
-    isAuthenticated={isAuthenticated}
-    user={user}
-    onLogout={logout}
+        onOpenAuthModal={openAuth}
+        isAuthenticated={isAuthenticated}
+        user={user}
+        onLogout={logout}
     />
-    <main>
-      <Outlet context={{ openAuth, isAuthenticated }} />
-    </main>
+    <Outlet context={{ openAuth, isAuthenticated }} />
     <Footer />
   </div>
 

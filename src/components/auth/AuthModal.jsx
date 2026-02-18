@@ -7,7 +7,13 @@ import FreelanceIcon from "../../assets/icons/type-freelance.svg?react";
 import SocieteIcon from "../../assets/icons/type-societe.svg?react";
 import ComptableIcon from "../../assets/icons/type-comptable.svg?react";
 
-function AuthModal({ isOpen, onClose, onLoginSuccess, onRegisterSuccess, defaultMode= "connexion" }) {
+function AuthModal({
+    isOpen = false,
+    onClose = () => {},
+    onLoginSuccess,
+    onRegisterSuccess,
+    defaultMode = "connexion",
+}) {
     const [mode, setMode] = useState(defaultMode)
     const [showErrors, setShowErrors] = useState(false)
 
@@ -73,16 +79,24 @@ function AuthModal({ isOpen, onClose, onLoginSuccess, onRegisterSuccess, default
         e.preventDefault();
         setShowErrors(true);
 
-        // Si invalide -> focus sur le premier champ en erreur
         if (!isValid) {
             const order =
             mode === "inscription"
-                ? ["firstName", "lastName", "email", "password", "confirmPassword"]
+                ? ["accountType", "firstName", "lastName", "email", "password", "confirmPassword"]
                 : ["email", "password"];
 
             const firstInvalid = order.find((k) => fieldErrors[k]);
             if (firstInvalid) {
-            const el = document.querySelector(`[name="${firstInvalid}"]`);
+            const scope = e.currentTarget; // ✅ le form soumis (donc la bonne modale)
+
+            // Champs classiques
+            let el = scope.querySelector(`[name="${firstInvalid}"]`);
+
+            // Cas spécial accountType (pas un input "name=accountType")
+            if (!el && firstInvalid === "accountType") {
+                el = scope.querySelector(".accountType .typeCard");
+            }
+
             el?.focus();
             }
             return;
@@ -147,6 +161,7 @@ function AuthModal({ isOpen, onClose, onLoginSuccess, onRegisterSuccess, default
                     type="button"
                     className={`typeCard ${form.accountType === "freelance" ? "is-selected" : ""}`}
                     onClick={() => setAccountType("freelance")}
+                    tabIndex={0}
                     aria-pressed={form.accountType === "freelance"}
                     >
                         <FreelanceIcon aria-hidden="true" />
@@ -157,6 +172,7 @@ function AuthModal({ isOpen, onClose, onLoginSuccess, onRegisterSuccess, default
                     type="button"
                     className={`typeCard ${form.accountType === "societe" ? "is-selected" : ""}`}
                     onClick={() => setAccountType("societe")}
+                    tabIndex={0}
                     aria-pressed={form.accountType === "societe"}
                     >
                         <SocieteIcon aria-hidden="true" />
@@ -167,6 +183,7 @@ function AuthModal({ isOpen, onClose, onLoginSuccess, onRegisterSuccess, default
                     type="button"
                     className={`typeCard ${form.accountType === "comptable" ? "is-selected" : ""}`}
                     onClick={() => setAccountType("comptable")}
+                    tabIndex={0}
                     aria-pressed={form.accountType === "comptable"}
                     >
                         <ComptableIcon aria-hidden="true" />
