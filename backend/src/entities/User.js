@@ -35,17 +35,23 @@ module.exports = new EntitySchema({
             updateDate: true
         },
         langage : {
-            type: "varchar"
+            type: "varchar",
+            default : "ENG" // ENG, FR, NL, ...
         },
         priceUnity : {
-            type : "varchar"
+            type : "varchar",
+            default : "euro" // euro, dollar, yen, ...
         },
-        role : {
+        role : { // admin, freelance, society, accountant (comptable)
             type : "varchar",
             nullable : false 
         },
         programs : {
             type: "array"
+        },
+        TVAnumber : {
+            type: "varchar",
+            nullable : false
         }
     },
 });
