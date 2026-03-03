@@ -36,5 +36,18 @@ module.exports = new EntitySchema({
             nullable: false,
             default : ""
         }
+    },
+    relations: {
+        user : {
+            target : 'User',
+            type : "many-to-one",
+            joinColumn : true,
+            nullable : false
+        },
+        description : {
+            target : 'Description',
+            type: 'one-to-one',
+            inverseSide : 'mission'
+        }
     }
 })
