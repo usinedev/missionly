@@ -9,6 +9,14 @@ module.exports = new EntitySchema({
             primary: true,
             generated : true
         },
+        content : {
+            type : 'varchar',
+            nullable : false
+        },
+        note : {
+            type : 'int',
+            nullable : false
+        }
     },
     relations: {
         user : {
