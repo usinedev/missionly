@@ -54,4 +54,21 @@ module.exports = new EntitySchema({
             nullable : false
         }
     },
+    relations: {
+        mission : {
+            target: "Mission",
+            type: 'one-to-many',
+            inverseSide : "user"
+        },
+        message : {
+            target : "Message",
+            type : 'one-to-many',
+            inverseSide: 'user'
+        },
+        review : {
+            target : "Review",
+            type : 'one-to-many',
+            inverseSide : 'user'
+        }
+    }
 });

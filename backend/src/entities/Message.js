@@ -9,5 +9,13 @@ module.exports = new EntitySchema({
             primary: true,
             generated : true
         },
+    },
+    relations: {
+        user : {
+            target : 'User',
+            type : "many-to-one",
+            joinColumn : true,
+            nullable : false
+        }
     }
 })
