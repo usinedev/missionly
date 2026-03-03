@@ -10,7 +10,8 @@ module.exports = new EntitySchema({
             generated : true
         },
         name : {
-            type: "varchar"
+            type: "varchar",
+            nullable : false
         },
         createdAt : {
             type: "datetime",
@@ -23,10 +24,12 @@ module.exports = new EntitySchema({
             type:"datetime"
         },
         adress : {
-            type:"varchar" // adresse du client ou Distanciel
+            type:"varchar", // adresse du client ou Distanciel,
+            nullable : false
         },
         price : {
-            type : "array" // [priceNumber, priceUnity]
+            type : "array", // [priceNumber, priceUnity],
+            nullable : false
         },
         tags : {
             type : "array"
