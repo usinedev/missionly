@@ -13,9 +13,7 @@ import bgTest from "@/assets/images/bgTest.svg";
 import AuthModal from '../../components/auth/AuthModal';
 import MissionCard from '../../components/cards/MissionCard';
 import { TextAnimate } from "@/components/ui/text-animate";
-import { TypingAnimation } from "@/components/ui/typing-animation"
 import { BlurFade } from "@/components/ui/blur-fade"
-import { TextReveal } from "@/components/ui/text-reveal"
 
 function Home() {
     const [query, setQuery] = useState("");
