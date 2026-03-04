@@ -12,6 +12,10 @@ import support from "@/assets/icons/cat-support.png";
 import bgTest from "@/assets/images/bgTest.svg";
 import AuthModal from '../../components/auth/AuthModal';
 import MissionCard from '../../components/cards/MissionCard';
+import { TextAnimate } from "@/components/ui/text-animate";
+import { TypingAnimation } from "@/components/ui/typing-animation"
+import { BlurFade } from "@/components/ui/blur-fade"
+import { TextReveal } from "@/components/ui/text-reveal"
 
 function Home() {
     const [query, setQuery] = useState("");
@@ -55,10 +59,10 @@ function Home() {
         <main className='main-home'>
             <section className='section hero'>
                 <div className="textHero">
-                    <h1>Des missions claires.<br/>Des collaborations durables<span className='purple'>.</span></h1>
-                    <p className="p">Missionly est une plateforme qui met en relation freelances et entreprises autour de missions structurées, pensées pour une vraie collaboration - pas pour des prestations jetables.</p>
+                    <h1><TextAnimate animation="blurInUp" by="character">Des missions claires.</TextAnimate> <TextAnimate animation="blurInUp" by="character" delay={0.2}>Des collaborations durables.</TextAnimate></h1>
+                    <TextAnimate animation="blurInUp" by="word" delay={0.5} className="p">Missionly est une plateforme qui met en relation freelances et entreprises autour de missions structurées, pensées pour une vraie collaboration - pas pour des prestations jetables.</TextAnimate>
                 </div>
-                <div className="searchSection">
+                <BlurFade delay={0.3} duration={1.2} className="searchSection">
                     <Input
                         variant="search"
                         data-cy="search-input"
@@ -90,8 +94,8 @@ function Home() {
                             Trouver une mission
                         </Button>
                     </div>
-                </div>
-                <div className="categories">
+                </BlurFade>
+                <BlurFade delay={0.6} duration={1.2} className="categories">
                     <div className="category">
                         <img src={dev} alt="" />
                         <span>Développement & Tech</span>
@@ -116,7 +120,7 @@ function Home() {
                         <img src={support} alt="" />
                         <span>Support & Coordination</span>
                     </div>
-                </div>
+                </BlurFade>
             </section>
 
             <section className="section howItWorks">
@@ -126,7 +130,7 @@ function Home() {
                         <div className="step">
                             <div className="circle"></div>
                             <div className="stepContent">
-                                <h3>Publiez une mission claire</h3>
+                                <TextAnimate as='h3' animation="blurInUp" by="character" duration={0.3}>Publiez une mission claire</TextAnimate>
                                 <p className="p">Définissez les objectifs, les compétences attendues, le budget et le cadre de collaboration dès le départ.</p>
                             </div>
                         </div>
@@ -134,7 +138,7 @@ function Home() {
                         <div className="step">
                             <div className="circle"></div>
                             <div className="stepContent">
-                                <h3>Trouvez les bons profils</h3>
+                                <TextAnimate as='h3' animation="blurInUp" by="character" duration={0.3}>Trouvez les bons profils</TextAnimate>
                                 <p className="p">Recevez des candidatures ciblées et pertinentes, basées sur les besoins réels de la mission — pas sur la surenchère.</p>
                             </div>
                         </div>
@@ -142,7 +146,7 @@ function Home() {
                         <div className="step">
                             <div className="circle"></div>
                             <div className="stepContent">
-                                <h3>Collaborez simplement</h3>
+                                <TextAnimate as='h3' animation="blurInUp" by="character" duration={0.3}>Collaborez simplement</TextAnimate>
                                 <p className="p">Discutez via la messagerie intégrée et suivez l’avancement de la mission dans un espace centralisé.</p>
                             </div>
                         </div>
@@ -150,7 +154,7 @@ function Home() {
                         <div className="step">
                             <div className="circle"></div>
                             <div className="stepContent">
-                                <h3>Évaluez la collaboration</h3>
+                                <TextAnimate as='h3' animation="blurInUp" by="character" duration={0.3}>Évaluez la collaboration</TextAnimate>
                                 <p className="p">Laissez des avis contextualisés pour construire une relation de confiance durable.</p>
                             </div>
                         </div>
