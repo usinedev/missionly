@@ -1,0 +1,17 @@
+
+User :
+role : admin, freelance, society, accountant
+langage : FR, ENG, JPN, NL, ...
+priceUnity : euro, dollar, yen, ...
+
+Mission : 
+adress : (adresse) || distanciel
+price : [(priceNumber), (priceUnity)]
+status : created, published, started, finished
+tags : [tag1, tag2, ...]
+
+
+
+API : 
+login : email, password
+register : email, password
