@@ -12,6 +12,7 @@ import support from "@/assets/icons/cat-support.png";
 import bgTest from "@/assets/images/bgTest.svg";
 import AuthModal from '../../components/auth/AuthModal';
 import MissionCard from '../../components/cards/MissionCard';
+import { motion } from 'motion/react';
 
 function Home() {
     const [query, setQuery] = useState("");
