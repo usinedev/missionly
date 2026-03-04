@@ -28,11 +28,11 @@ module.exports = new EntitySchema({
             nullable : false
         },
         price : {
-            type : "array", // [priceNumber, priceUnity],
+            type : "simple-array", // [priceNumber, priceUnity],
             nullable : false
         },
         tags : {
-            type : "array"
+            type : "simple-array"
         },
         status : { // created, published, started, finished
             type: "varchar",

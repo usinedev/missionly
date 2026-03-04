@@ -15,3 +15,6 @@ tags : [tag1, tag2, ...]
 API : 
 login : email, password
 register : email, password
+
+La route Delete est protégée pour que seul un Admin puisse effacer de la db une Mission
+La route pour soft-delete est un post qui archive la mission (elle n'est plus lié à l'utilisateur et est mise en non publiée)

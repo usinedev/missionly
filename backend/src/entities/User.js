@@ -47,11 +47,16 @@ module.exports = new EntitySchema({
             nullable : false 
         },
         programs : {
-            type: "array"
+            type: "simple-array",
+            nullable: true
         },
         TVAnumber : {
             type: "varchar",
             nullable : false
+        },
+        imageLink : {
+            type: "varchar",
+            nullable : true
         }
     },
     relations: {
