@@ -21,6 +21,36 @@ function Home() {
     const stepsRef = useRef(null);
     const lastMissions = getMissions().slice(-4).reverse();
 
+    //Animations Framer-Motion
+    const EASE = [0.22, 1, 0.36, 1];
+
+    const viewport = {
+    once: true,
+    amount: 0.4,          // déclenche quand 40% de l'élément est visible
+    margin: "0px 0px -12% 0px", // retarde encore un peu (déclenche plus bas)
+    };
+
+    const reveal = {
+    hidden: { opacity: 0, y: 34, scale: 0.99, filter: "blur(2px)" },
+    show:   { opacity: 1, y: 0,  scale: 1,    filter: "blur(0px)" },
+    };
+
+    const revealTransition = (delay = 0) => ({
+    duration: 1,         // plus lent
+    ease: EASE,
+    delay,
+    });
+
+    const staggerContainer = {
+    hidden: {},
+    show: {
+        transition: {
+        staggerChildren: 0.14,  // plus lisible
+        delayChildren: 0.08,
+        },
+    },
+    };
+
     function goToMissions() {
         const q = query.trim();
         if (!q) {
@@ -121,89 +151,168 @@ function Home() {
             </section>
 
             <section className="section howItWorks">
-                <div className="container">
-                    <h2>Comment ça marche ?</h2>
-                    <div className="steps" ref={stepsRef}>
-                        <div className="step">
-                            <div className="circle"></div>
-                            <div className="stepContent">
-                                <h3>Publiez une mission claire</h3>
-                                <p className="p">Définissez les objectifs, les compétences attendues, le budget et le cadre de collaboration dès le départ.</p>
-                            </div>
-                        </div>
-                        <div className="separator"></div>
-                        <div className="step">
-                            <div className="circle"></div>
-                            <div className="stepContent">
-                                <h3>Trouvez les bons profils</h3>
-                                <p className="p">Recevez des candidatures ciblées et pertinentes, basées sur les besoins réels de la mission — pas sur la surenchère.</p>
-                            </div>
-                        </div>
-                        <div className="separator"></div>
-                        <div className="step">
-                            <div className="circle"></div>
-                            <div className="stepContent">
-                                <h3>Collaborez simplement</h3>
-                                <p className="p">Discutez via la messagerie intégrée et suivez l’avancement de la mission dans un espace centralisé.</p>
-                            </div>
-                        </div>
-                        <div className="separator"></div>
-                        <div className="step">
-                            <div className="circle"></div>
-                            <div className="stepContent">
-                                <h3>Évaluez la collaboration</h3>
-                                <p className="p">Laissez des avis contextualisés pour construire une relation de confiance durable.</p>
-                            </div>
-                        </div>
+            <div className="container">
+                <motion.h2
+                variants={reveal}
+                initial="hidden"
+                whileInView="show"
+                transition={revealTransition(0)}
+                viewport={viewport}
+                >
+                Comment ça marche ?
+                </motion.h2>
+
+                <motion.div
+                className="steps"
+                variants={staggerContainer}
+                initial="hidden"
+                whileInView="show"
+                viewport={viewport}
+                ref={stepsRef}
+                >
+                <motion.div className="step" variants={reveal} transition={revealTransition()}>
+                    <div className="circle"></div>
+                    <div className="stepContent">
+                    <h3>Publiez une mission claire</h3>
+                    <p className="p">
+                        Définissez les objectifs, les compétences attendues, le budget et le cadre de collaboration dès le départ.
+                    </p>
                     </div>
-                </div>
+                </motion.div>
+
+                <motion.div
+                    className="separator"
+                    variants={{ hidden: { opacity: 0, scaleX: 0.6 }, show: { opacity: 1, scaleX: 1 } }}
+                    transition={{ duration: 0.45, ease: EASE }}
+                    style={{ transformOrigin: "left" }}
+                />
+
+                <motion.div className="step" variants={reveal} transition={revealTransition()}>
+                    <div className="circle"></div>
+                    <div className="stepContent">
+                    <h3>Trouvez les bons profils</h3>
+                    <p className="p">
+                        Recevez des candidatures ciblées et pertinentes, basées sur les besoins réels de la mission — pas sur la surenchère.
+                    </p>
+                    </div>
+                </motion.div>
+
+                <motion.div
+                    className="separator"
+                    variants={{ hidden: { opacity: 0, scaleX: 0.6 }, show: { opacity: 1, scaleX: 1 } }}
+                    transition={{ duration: 0.45, ease: EASE }}
+                    style={{ transformOrigin: "left" }}
+                />
+
+                <motion.div className="step" variants={reveal} transition={revealTransition()}>
+                    <div className="circle"></div>
+                    <div className="stepContent">
+                    <h3>Collaborez simplement</h3>
+                    <p className="p">
+                        Discutez via la messagerie intégrée et suivez l’avancement de la mission dans un espace centralisé.
+                    </p>
+                    </div>
+                </motion.div>
+
+                <motion.div
+                    className="separator"
+                    variants={{ hidden: { opacity: 0, scaleX: 0.6 }, show: { opacity: 1, scaleX: 1 } }}
+                    transition={{ duration: 0.45, ease: EASE }}
+                    style={{ transformOrigin: "left" }}
+                />
+
+                <motion.div className="step" variants={reveal} transition={revealTransition()}>
+                    <div className="circle"></div>
+                    <div className="stepContent">
+                    <h3>Évaluez la collaboration</h3>
+                    <p className="p">
+                        Laissez des avis contextualisés pour construire une relation de confiance durable.
+                    </p>
+                    </div>
+                </motion.div>
+                </motion.div>
+            </div>
             </section>
 
             <section className="section lastMissions">
-                <div className="container">
-                    <h2>Dernières missions publiées</h2>
-                    <div className="resultsCards">
-                    {lastMissions.map((mission) => (
-                        <MissionCard key={mission.id} mission={mission} />
-                    ))}
-                    </div>
-                    <Button onClick={() => navigate("/missions")}>
-                        Voir toutes les missions
-                    </Button>
+            <div className="container">
+                <motion.h2
+                variants={reveal}
+                initial="hidden"
+                whileInView="show"
+                transition={revealTransition(0)}
+                viewport={viewport}
+                >
+                Dernières missions publiées
+                </motion.h2>
+
+                <div className="resultsCards">
+                {lastMissions.map((mission, index) => (
+                    <MissionCard key={mission.id} mission={mission} index={index} />
+                ))}
                 </div>
+
+                <motion.div
+                variants={reveal}
+                initial="hidden"
+                whileInView="show"
+                transition={revealTransition(0.05)}
+                viewport={viewport}
+                >
+                <Button onClick={() => navigate("/missions")}>
+                    Voir toutes les missions
+                </Button>
+                </motion.div>
+            </div>
             </section>
 
-            <section className='section collab'>
-                <div className="container">
-                    <div className="left">
-                        <h2>Prêt à collaborer autrement?</h2>
-                        <p className='p'>Rejoignez Missionly et découvrez un espace où freelances et entreprises travaillent ensemble de manière structurée et transparente</p>
-                        <div className="btns">
-                        <Button
-                        variant='secondary'
+            <section className="section collab">
+            <motion.div
+                className="container"
+                variants={staggerContainer}
+                initial="hidden"
+                whileInView="show"
+                viewport={viewport}
+            >
+                <motion.div className="left" variants={reveal} transition={revealTransition()}>
+                <h2>Prêt à collaborer autrement?</h2>
+                <p className="p">
+                    Rejoignez Missionly et découvrez un espace où freelances et entreprises travaillent ensemble de manière structurée et transparente
+                </p>
+
+                <motion.div
+                    className="btns"
+                    variants={staggerContainer}
+                    initial="hidden"
+                    whileInView="show"
+                    viewport={viewport}
+                >
+                    <motion.div variants={reveal} transition={revealTransition(0)}>
+                    <Button
+                        variant="secondary"
                         data-cy="publish-mission-bottom-btn"
-                        onClick={() => {
-                            if (isAuthenticated) {
-                                navigate('/dashboard')
-                            }
-                            else {
-                                openAuth();
-                            }
-                        }}
-                        >
-                            Publier une mission
-                        </Button>
-                        <Button
-                        variant='primary'
+                        onClick={() => (isAuthenticated ? navigate("/dashboard") : openAuth())}
+                    >
+                        Publier une mission
+                    </Button>
+                    </motion.div>
+
+                    <motion.div variants={reveal} transition={revealTransition(0.03)}>
+                    <Button
+                        variant="primary"
                         data-cy="find-mission-bottom-btn"
-                        onClick={goToMissions}>
-                            Trouver une mission
-                        </Button>
-                        </div>
-                    </div>
-                    
-                    <AuthModal defaultMode='inscription' />
-                </div>
+                        onClick={goToMissions}
+                    >
+                        Trouver une mission
+                    </Button>
+                    </motion.div>
+                </motion.div>
+                </motion.div>
+
+                <motion.div variants={reveal} transition={revealTransition(0.05)}>
+                <AuthModal defaultMode="inscription" />
+                </motion.div>
+            </motion.div>
             </section>
         </main>
         </>
