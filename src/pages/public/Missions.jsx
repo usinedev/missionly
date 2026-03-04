@@ -7,6 +7,7 @@ import Input from '../../components/ui/Input';
 import Button from '../../components/ui/Button';
 import ArrowLeft from "@/assets/icons/ArrowLeft.svg?react";
 import ArrowRight from "@/assets/icons/ArrowRight.svg?react";
+import { motion, AnimatePresence } from 'motion/react';
 
 function Missions() {
     const [query, setQuery] = useState("");
@@ -19,8 +20,8 @@ function Missions() {
 
     function normalizeString(str) {
     return str
-        .normalize("NFD")                 // sépare les accents
-        .replace(/[\u0300-\u036f]/g, "")  // supprime les accents
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
         .toLowerCase();
     }
 
@@ -28,7 +29,6 @@ function Missions() {
         const q = searchParams.get("q");
         if (q !== null) setQuery(q);
     }, [searchParams]);
-
 
     const filteredMissions = useMemo(() => {
         return missions.filter((mission) => {
@@ -65,48 +65,175 @@ function Missions() {
         setPage((p) => Math.min(totalPages, p + 1));
     }
 
+    // ===== Motion setup =====
+    const EASE = [0.22, 1, 0.36, 1];
+
+    const viewport = {
+        once: true,
+        amount: 0.35,
+        margin: "0px 0px -10% 0px",
+    };
+
+    const reveal = {
+        hidden: { opacity: 0, y: 18, filter: "blur(4px)" },
+        show: { opacity: 1, y: 0, filter: "blur(0px)" },
+    };
+
+    const pop = {
+        hidden: { opacity: 0, y: 10, scale: 0.98, filter: "blur(4px)" },
+        show: { opacity: 1, y: 0, scale: 1, filter: "blur(0px)" },
+    };
+
+    const fade = {
+        hidden: { opacity: 0 },
+        show: { opacity: 1 },
+    };
+
+    const transition = (delay = 0, duration = 0.7) => ({
+        duration,
+        ease: EASE,
+        delay,
+    });
+
+    const stagger = {
+        hidden: {},
+        show: {
+            transition: {
+                staggerChildren: 0.08,
+                delayChildren: 0.02,
+            },
+        },
+    };
 
     return (
         <main className='main-missions section'>
-            <section className='searchSection container'>
-                    <Input
-                        variant="search"
-                        data-cy="search-input"
-                        value={query}
-                        onChange={(e) => setQuery(e.target.value)}
-                    />
-                    <div className="filters">
+            <motion.section
+                className='searchSection container'
+                variants={stagger}
+                initial="hidden"
+                animate="show"
+            >
+                    <motion.div
+                        variants={pop}
+                        transition={transition(0, 0.75)}
+                        className='inputDiv'
+                    >
+                        <Input
+                            variant="search"
+                            data-cy="search-input"
+                            value={query}
+                            onChange={(e) => setQuery(e.target.value)}
+                        />
+                    </motion.div>
+
+                    <motion.div
+                        className="filters"
+                        variants={reveal}
+                        transition={transition(0.08, 0.75)}
+                    >
                         <FilterBtn selectedCategory={selectedCategory} onChange={setSelectedCategory}/>
-                    </div>
-            </section>
+                    </motion.div>
+            </motion.section>
 
             <section className="resultsSection container">
-                {query && (
-                    <p className='resultsTitle'>Résultats pour <span className="query">{query}</span> :</p>
-                )}
-                <div className="infos">
-                    <p>
+                <AnimatePresence mode="popLayout">
+                    {query && (
+                        <motion.p
+                            className='resultsTitle'
+                            key={`resultsTitle-${query}`}
+                            variants={reveal}
+                            initial="hidden"
+                            animate="show"
+                            exit="hidden"
+                            transition={transition(0, 0.55)}
+                        >
+                            Résultats pour <span className="query">{query}</span> :
+                        </motion.p>
+                    )}
+                </AnimatePresence>
+
+                <motion.div
+                    className="infos"
+                    variants={stagger}
+                    initial="hidden"
+                    animate="show"
+                >
+                    <motion.p
+                        key={`count-${filteredMissions.length}-${selectedCategory}-${query}`}
+                        variants={fade}
+                        transition={transition(0, 0.35)}
+                    >
                         {filteredMissions.length === 0
                             ? "Aucun résultat"
                             : filteredMissions.length === 1
                                 ? "1 résultat"
                                 : `${filteredMissions.length} résultats`}
-                    </p>
-                    <div className="tri">
+                    </motion.p>
+
+                    <motion.div
+                        className="tri"
+                        variants={reveal}
+                        transition={transition(0.06, 0.6)}
+                        whileHover={{ y: -1 }}
+                    >
                         <span className='triMuted'>Triez par :</span>
-                        <span className='triValue'>Pertinence</span>
-                    </div>
-                </div>
+                        <motion.span
+                            className='triValue'
+                            key={`tri-${query}-${selectedCategory}-${page}`}
+                            initial={{ opacity: 0, y: 6, filter: "blur(4px)" }}
+                            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                            transition={transition(0.02, 0.45)}
+                        >
+                            Pertinence
+                        </motion.span>
+                    </motion.div>
+                </motion.div>
+
                 <div className="resultsCards">
                     {pageMissions.map((mission) => (
                         <MissionCard key={mission.id} mission={mission} />
                     ))}
                 </div>
-                <div className="pageNavigation">
-                    <Button variant={isFirstPage ? 'disabled' : 'primary'} disabled={isFirstPage} Icon={ArrowLeft} iconPosition='left' size='small' onClick={goPrev}></Button>
-                    <span className="activePage">{page}</span>
-                    <Button variant={isLastPage ? 'disabled' : 'primary'} disabled={isLastPage} Icon={ArrowRight} iconPosition='right' size='small' onClick={goNext}></Button>
-                </div>
+
+                <motion.div
+                    className="pageNavigation"
+                    variants={reveal}
+                    initial="hidden"
+                    whileInView="show"
+                    viewport={viewport}
+                    transition={transition(0.05, 0.65)}
+                >
+                    <Button
+                        variant={isFirstPage ? 'disabled' : 'primary'}
+                        disabled={isFirstPage}
+                        Icon={ArrowLeft}
+                        iconPosition='left'
+                        size='small'
+                        onClick={goPrev}
+                    ></Button>
+
+                    <AnimatePresence mode="popLayout">
+                        <motion.span
+                            className="activePage"
+                            key={`page-${page}`}
+                            initial={{ opacity: 0, y: 6, scale: 0.98, filter: "blur(4px)" }}
+                            animate={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
+                            exit={{ opacity: 0, y: -6, scale: 0.98, filter: "blur(4px)" }}
+                            transition={transition(0, 0.35)}
+                        >
+                            {page}
+                        </motion.span>
+                    </AnimatePresence>
+
+                    <Button
+                        variant={isLastPage ? 'disabled' : 'primary'}
+                        disabled={isLastPage}
+                        Icon={ArrowRight}
+                        iconPosition='right'
+                        size='small'
+                        onClick={goNext}
+                    ></Button>
+                </motion.div>
             </section>
         </main>
     )
