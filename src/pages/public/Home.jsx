@@ -13,6 +13,8 @@ import bgTest from "@/assets/images/bgTest.svg";
 import AuthModal from '../../components/auth/AuthModal';
 import MissionCard from '../../components/cards/MissionCard';
 import { motion } from 'motion/react';
+import { BlurFade } from "@/components/ui/blur-fade";
+import { TextAnimate } from "@/components/ui/text-animate";
 
 function Home() {
     const [query, setQuery] = useState("");
@@ -86,10 +88,10 @@ function Home() {
         <main className='main-home'>
             <section className='section hero'>
                 <div className="textHero">
-                    <h1>Des missions claires.<br/>Des collaborations durables<span className='purple'>.</span></h1>
-                    <p className="p">Missionly est une plateforme qui met en relation freelances et entreprises autour de missions structurées, pensées pour une vraie collaboration - pas pour des prestations jetables.</p>
+                    <h1><TextAnimate animation="blurInUp" by="character">Des missions claires.</TextAnimate> <TextAnimate animation="blurInUp" by="character" delay={0.2}>Des collaborations durables.</TextAnimate></h1>
+                    <TextAnimate animation="blurInUp" by="word" delay={0.5} className="p">Missionly est une plateforme qui met en relation freelances et entreprises autour de missions structurées, pensées pour une vraie collaboration - pas pour des prestations jetables.</TextAnimate>
                 </div>
-                <div className="searchSection">
+                <BlurFade delay={0.3} duration={1.2} className="searchSection">
                     <Input
                         variant="search"
                         data-cy="search-input"
@@ -121,8 +123,8 @@ function Home() {
                             Trouver une mission
                         </Button>
                     </div>
-                </div>
-                <div className="categories">
+                </BlurFade>
+                <BlurFade delay={0.6} duration={1.2} className="categories">
                     <div className="category">
                         <img src={dev} alt="" />
                         <span>Développement & Tech</span>
@@ -147,7 +149,7 @@ function Home() {
                         <img src={support} alt="" />
                         <span>Support & Coordination</span>
                     </div>
-                </div>
+                </BlurFade>
             </section>
 
             <section className="section howItWorks">
