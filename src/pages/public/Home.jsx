@@ -22,6 +22,7 @@ function Home() {
     const { openAuth, isAuthenticated } = useOutletContext();
     const stepsRef = useRef(null);
     const lastMissions = getMissions().slice(-4).reverse();
+    const [animationType, setAnimationType] = useState("character");
 
     //Framer-motion (animations)
     const EASE = [0.22, 1, 0.36, 1];
@@ -59,6 +60,21 @@ function Home() {
         },
     };
 
+    useEffect(() => {
+        const updateAnimation = () => {
+        if (window.innerWidth < 600) {
+            setAnimationType("word");
+        } else {
+            setAnimationType("character");
+        }
+        };
+
+        updateAnimation();
+        window.addEventListener("resize", updateAnimation);
+
+        return () => window.removeEventListener("resize", updateAnimation);
+    }, []);
+
     function goToMissions() {
         const q = query.trim();
         if (!q) {
@@ -94,7 +110,7 @@ function Home() {
         <main className='main-home'>
             <section className='section hero'>
                 <div className="textHero">
-                    <h1><TextAnimate once animation="blurInUp" by="character">Des missions claires.</TextAnimate> <TextAnimate once animation="blurInUp" by="character" delay={0.2}>Des collaborations durables.</TextAnimate></h1>
+                    <h1><TextAnimate once animation="blurInUp" by={animationType}>Des missions claires.</TextAnimate> <TextAnimate once animation="blurInUp" by={animationType} delay={0.2}>Des collaborations durables.</TextAnimate></h1>
                     <TextAnimate once animation="blurInUp" by="word" delay={0.5} className="p">Missionly est une plateforme qui met en relation freelances et entreprises autour de missions structurées, pensées pour une vraie collaboration - pas pour des prestations jetables.</TextAnimate>
                 </div>
                 <BlurFade delay={0.3} duration={1.2} className="searchSection">
