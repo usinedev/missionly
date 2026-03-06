@@ -5,11 +5,8 @@ const jwt = require('jsonwebtoken')
 class UserController {
     static async getUsers(req, res) {
          try {
-             console.log(req.params);
             let number = req.params.number 
-            
-            console.log(number);
-            
+                    
             if (!number) {
                 number = "20"
             }

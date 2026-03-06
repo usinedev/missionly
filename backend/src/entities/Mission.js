@@ -18,10 +18,12 @@ module.exports = new EntitySchema({
             createDate: true
         },
         start : {
-            type: "datetime"
+            type: "datetime",
+            nullable : true
         },
         end : {
-            type:"datetime"
+            type:"datetime",
+            nullable : true
         },
         adress : {
             type:"varchar", // adresse du client ou Distanciel,
@@ -32,7 +34,8 @@ module.exports = new EntitySchema({
             nullable : false
         },
         tags : {
-            type : "simple-array"
+            type : "simple-array",
+            nullable : true
         },
         status : { // created, published, started, finished
             type: "varchar",
@@ -50,7 +53,8 @@ module.exports = new EntitySchema({
         description : {
             target : 'Description',
             type: 'one-to-one',
-            inverseSide : 'mission'
+            inverseSide : 'mission',
+            nullable: true
         }
     }
 })

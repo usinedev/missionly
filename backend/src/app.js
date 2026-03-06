@@ -14,7 +14,7 @@ app.get("/", (req, res) => {
 
 app.use('/api/auth', AuthRoute)
 app.use('/api/user', UserRoute)
-// app.use('/api/mission', MissionRoute)
+app.use('/api/mission', MissionRoute)
 // app.use('/api/review', ReviewRoute)
 
 
