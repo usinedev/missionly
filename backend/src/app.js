@@ -1,5 +1,6 @@
 const express = require('express')
 const AuthRoute = require('./routes/AuthRoute.js')
+const UserRoute = require('./routes/UserRoute.js')
 const MissionRoute = require('./routes/MissionRoute.js')
 const ReviewRoute = require('./routes/ReviewRoute.js')
 
@@ -12,6 +13,7 @@ app.get("/", (req, res) => {
 });
 
 app.use('/api/auth', AuthRoute)
+app.use('/api/user', UserRoute)
 // app.use('/api/mission', MissionRoute)
 // app.use('/api/review', ReviewRoute)
 

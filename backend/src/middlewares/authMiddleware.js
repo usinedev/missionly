@@ -4,7 +4,8 @@ const { verifyToken } = require('../utils/jwt')
 const authenticate = async (req, res, next) => {
     try {
         const authHeader = req.headers.authorization
-
+        console.log("AuthHeader ok");
+        
         if (!authHeader || !authHeader.startsWith('Bearer ')) {
             return res.status(401).json({
                 success : false,
@@ -13,11 +14,15 @@ const authenticate = async (req, res, next) => {
         }
 
         const token = authHeader.split(' ')[1]
+        console.log("Token ok");
+        console.log(token);
         
-        const decoded = verifyToken(token) 
-
+        const decoded = jwt.verifyToken(token) 
+        console.log("Token decoded");
+        
         const user = await authService.findById(decoded.id).select('-password')
-
+        console.log("User ok");
+        
         if (!user) {
             return res.status(401).json({
                 success: false,

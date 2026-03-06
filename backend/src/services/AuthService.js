@@ -18,7 +18,7 @@ class AuthService {
         const accessToken = jwt.sign(
         {id:user.id, role:user.role},
         process.env.JWT_SECRET || 'secret',
-        {expiresIn : '15m'}
+        {expiresIn : '2d'}
     ) 
         const refreshToken = jwt.sign(
         {id:user.id},
@@ -50,17 +50,6 @@ class AuthService {
         })
         return userRepository.save(user) 
     }
-
-    static async getProfile(_id){
-        const userRepository = AppDataSource.getRepository("User")
-
-        const user = await userRepository.findOne({where :{id : _id}})
-        if (!user) {
-    throw new Error("The user doesn't exist")
-        }
-        const {password : _, ... userWithoutPassword} = user
-        return userWithoutPassword
-    }  
 }
 
 

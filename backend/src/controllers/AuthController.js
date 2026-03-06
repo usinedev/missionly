@@ -1,7 +1,7 @@
 const authService = require('../services/AuthService')
 
 class AuthController { 
-     async register(req, res) {
+    static async register(req, res) {
         const { email, password, userName, role, TVAnumber } = req.body
         try {
             const user = await authService.register(
@@ -24,7 +24,7 @@ class AuthController {
         }
 
     }
-     async login(req, res) {
+    static async login(req, res) {
         const { email, password } = req.body
         try {
             const { infoUser, accessToken, refreshToken} = await authService.login(email, password) 
@@ -38,25 +38,7 @@ class AuthController {
         }
 
     }
-     async getProfile(req, res) {
-         try {
-            console.log(req.params.id);
-            
-            const id = req.params.id
-            if (!id) {
-                return res.status(400).json({message: "An id is necessary"})
-            }
-            const user = await authService.getProfile(id)
-            res.status(200).json(user)
-        } catch (error) {
-            if (error.message === "The user doesn't exist") {
-                res.status(401).json({message:error.message})
-            }
-            throw error;
-        }
-        
-    }
-     logout(req, res, next) {
+    static logout(req, res, next) {
         req.logout((err)=>{
             if (err) {
                 return next(err)
@@ -67,4 +49,4 @@ class AuthController {
 }
 
 
-module.exports = new AuthController()
+module.exports = AuthController
