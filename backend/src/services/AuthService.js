@@ -50,6 +50,22 @@ class AuthService {
         })
         return userRepository.save(user) 
     }
+    static async refresh(_id) {
+        const userRepository = AppDataSource.getRepository("User")
+        const user = await userRepository.findOne({where : {id : _id}})
+        console.log(user);
+        
+        if (!user) {
+            throw new Error("Authentication failed")
+        }
+        const accessToken = jwt.sign(
+        {id:user.id, role:user.role},
+        process.env.JWT_SECRET || 'secret',
+        {expiresIn : '2d'}
+    ) 
+    
+    return {accessToken : accessToken, id : user.id}
+    }
 }
 
 

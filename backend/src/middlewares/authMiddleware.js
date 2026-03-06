@@ -1,10 +1,10 @@
-const authService = require('../services/AuthService')
-const { verifyToken } = require('../utils/jwt')
+const jwt = require('jsonwebtoken');
+const UserService = require('../services/UserService');
 
 const authenticate = async (req, res, next) => {
     try {
         const authHeader = req.headers.authorization
-        console.log("AuthHeader ok");
+        console.log(authHeader);
         
         if (!authHeader || !authHeader.startsWith('Bearer ')) {
             return res.status(401).json({
@@ -12,16 +12,17 @@ const authenticate = async (req, res, next) => {
                 message : 'No token, no access'
             })
         }
-
+        
         const token = authHeader.split(' ')[1]
-        console.log("Token ok");
         console.log(token);
         
-        const decoded = jwt.verifyToken(token) 
-        console.log("Token decoded");
+        const decoded = jwt.verify(token, process.env.JWT_SECRET || 'secret') 
+        console.log(decoded);
+        console.log("post decoded");
         
-        const user = await authService.findById(decoded.id).select('-password')
-        console.log("User ok");
+        
+    
+        const user = await UserService.getById(decoded.id)
         
         if (!user) {
             return res.status(401).json({
@@ -30,6 +31,7 @@ const authenticate = async (req, res, next) => {
             })
         }
 
+        req.user = user
         next()
     } catch (error) {
         console.error('Authentication error', error.message);

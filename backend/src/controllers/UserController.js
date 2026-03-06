@@ -3,13 +3,34 @@ const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken') 
 
 class UserController {
-    static async getProfile(req, res) {
-         try {            
+    static async getUsers(req, res) {
+         try {
+             console.log(req.params);
+            let number = req.params.number 
+            
+            console.log(number);
+            
+            if (!number) {
+                number = "20"
+            }
+            number = parseInt(number)
+            const users = await UserService.getUsers(number)
+            res.status(200).json(users)
+         } catch (error) {
+            if (error.message === "The user doesn't exist") {
+                res.status(401).json({message:error.message})
+            }
+            throw error;
+         }
+        
+    }
+    static async getById(req, res) {
+        try {            
             const id = req.params.id
             if (!id) {
                 return res.status(400).json({message: "An id is necessary"})
             }
-            const user = await UserService.getProfile(id)
+            const user = await UserService.getById(id)
             res.status(200).json(user)
         } catch (error) {
             if (error.message === "The user doesn't exist") {
@@ -17,7 +38,21 @@ class UserController {
             }
             throw error;
         }
-        
+    }
+    static async getByName(req, res) {
+        try {            
+            const name = req.params.name
+            if (!name) {
+                return res.status(400).json({message: "An id is necessary"})
+            }
+            const user = await UserService.getByName(name)
+            res.status(200).json(user)
+        } catch (error) {
+            if (error.message === "The user doesn't exist") {
+                res.status(401).json({message:error.message})
+            }
+            throw error;
+        }
     }
     static async update(req, res) {
         try {

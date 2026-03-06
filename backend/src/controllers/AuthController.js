@@ -1,4 +1,5 @@
 const authService = require('../services/AuthService')
+const jwt = require("jsonwebtoken")
 
 class AuthController { 
     static async register(req, res) {
@@ -45,6 +46,16 @@ class AuthController {
             }
             res.json({message:'Déconnecté'})
         })
+    }
+    static async refresh(req, res) {
+        const authHeader = req.headers.authorization
+        const token = authHeader.split(' ')[1]
+        console.log(token);
+        
+        const decoded = jwt.decode(token)
+
+        const accessToken = await authService.refresh(decoded.id)
+        res.status(200).json(accessToken)
     }
 }
 
