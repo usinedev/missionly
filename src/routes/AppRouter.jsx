@@ -28,6 +28,7 @@ function AppRouter() {
         <Route path="/dashboard/my-account" element={<DashboardMyAccount />} />
         <Route path="/dashboard/messages" element={<DashboardMessages />} />
         <Route path="/dashboard/missions/:id" element={<DashboardMissionDetail />} />
+        <Route path="/dashboard/missions/create" element={<DashboardMissionDetail />} />
       </Route>
     </Routes>
   );

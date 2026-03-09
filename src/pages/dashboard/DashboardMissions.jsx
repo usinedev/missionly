@@ -4,9 +4,10 @@ import { getMissions } from '@/services/missions.mock';
 import Button from '@/components/ui/Button';
 import Plus from "@/assets/icons/Plus.svg?react";
 import StatusBtn from '@/components/ui/StatusBtn';
-
+import { useNavigate } from "react-router-dom";
 
 function DashboardMissions() {
+    const navigate = useNavigate();
     const missions = getMissions();
     const [selectedStatus, setSelectedStatus] = useState("all");
     const filteredMissions = useMemo(() => {
@@ -25,7 +26,7 @@ function DashboardMissions() {
                 <h1>Missions</h1>
                 <p className="p">Gérez et suivez l’ensemble des missions publiées par votre société.</p>
             </div>
-            <Button Icon={Plus} iconPosition='left'>Créer une mission</Button>
+            <Button onClick={() => navigate(`/dashboard/missions/create`)} Icon={Plus} iconPosition='left'>Créer une mission</Button>
         </section>
 
         <StatusBtn selectedStatus={selectedStatus} onChange={setSelectedStatus} />

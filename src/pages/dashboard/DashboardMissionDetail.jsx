@@ -4,7 +4,40 @@ import Button from "@/components/ui/Button.jsx";
 
 function DashboardMissionDetail() {
     const { id } = useParams();
-    const mission = getMissionById(id);
+    const isCreate = id === "create" || !id;
+    const mission = isCreate
+        ? {
+            id: "",
+            category: "dev",
+            title: "",
+            status: "created",
+            company: {
+                name: "",
+                location: "",
+                description: "",
+                otherMissionsCount: 0,
+            },
+            meta: {
+                remote: true,
+                startDateLabel: "",
+                durationLabel: "",
+                rateLabel: "",
+            },
+            tags: [],
+            summary: "",
+            sections: {
+                contexte: [],
+                objectifs: [],
+                competences: [],
+                profil: [],
+                budget: [],
+            },
+            cta: {
+                primary: "",
+                secondary: "",
+            },
+        }
+        : getMissionById(id);
     const navigate = useNavigate();
 
 if (!mission) {
@@ -20,19 +53,23 @@ return (
     <main className="dashboard-page dashboard-mission-detail">
         <section className="dashboard-element dashboard-header">
             <div className="text">
-                <h1>Modifier la mission</h1>
-                <p className="p">Éditez tous les paramètres de la mission.</p>
+                <h1>{isCreate ? "Créer une mission" : "Modifier la mission"}</h1>
+                <p className="p">
+                    {isCreate
+                        ? "Renseignez les informations pour créer une nouvelle mission."
+                        : "Éditez tous les paramètres de la mission."}
+                </p>
             </div>
-            <Button size="small">Enregistrer</Button>
+            <Button size="small">{isCreate ? "Créer" : "Enregistrer"}</Button>
         </section>
 
         <section className="dashboard-element">
             <h2>Informations générales</h2>
             <div className="form-grid">
-                <div className="field">
+                {/* <div className="field">
                     <label htmlFor="mission-id">ID</label>
                     <input id="mission-id" type="text" defaultValue={mission.id} />
-                </div>
+                </div> */}
                 <div className="field">
                     <label htmlFor="mission-title">Titre</label>
                     <input id="mission-title" type="text" defaultValue={mission.title} />
@@ -61,37 +98,6 @@ return (
         </section>
 
         <section className="dashboard-element">
-            <h2>Entreprise</h2>
-            <div className="form-grid">
-                <div className="field">
-                    <label htmlFor="company-name">Nom</label>
-                    <input id="company-name" type="text" defaultValue={mission.company.name} />
-                </div>
-                <div className="field">
-                    <label htmlFor="company-location">Localisation</label>
-                    <input id="company-location" type="text" defaultValue={mission.company.location} />
-                </div>
-                <div className="field field-wide">
-                    <label htmlFor="company-description">Description</label>
-                    <textarea
-                        id="company-description"
-                        rows="3"
-                        defaultValue={mission.company.description}
-                    />
-                </div>
-                <div className="field">
-                    <label htmlFor="company-other-count">Nombre d'autres missions</label>
-                    <input
-                        id="company-other-count"
-                        type="number"
-                        min="0"
-                        defaultValue={mission.company.otherMissionsCount}
-                    />
-                </div>
-            </div>
-        </section>
-
-        <section className="dashboard-element">
             <h2>Informations pratiques</h2>
             <div className="form-grid">
                 <div className="field">
@@ -106,7 +112,7 @@ return (
                     <input id="mission-start" type="text" defaultValue={mission.meta.startDateLabel} />
                 </div>
                 <div className="field">
-                    <label htmlFor="mission-duration">Durée</label>
+                    <label htmlFor="mission-duration">Durée (jours)</label>
                     <input id="mission-duration" type="text" defaultValue={mission.meta.durationLabel} />
                 </div>
                 <div className="field">
@@ -176,20 +182,6 @@ return (
                         rows="4"
                         defaultValue={mission.sections.budget.join("\n")}
                     />
-                </div>
-            </div>
-        </section>
-
-        <section className="dashboard-element">
-            <h2>CTA</h2>
-            <div className="form-grid">
-                <div className="field">
-                    <label htmlFor="cta-primary">Bouton principal</label>
-                    <input id="cta-primary" type="text" defaultValue={mission.cta.primary} />
-                </div>
-                <div className="field">
-                    <label htmlFor="cta-secondary">Bouton secondaire</label>
-                    <input id="cta-secondary" type="text" defaultValue={mission.cta.secondary} />
                 </div>
             </div>
         </section>
