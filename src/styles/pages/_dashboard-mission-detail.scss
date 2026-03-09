@@ -1,0 +1,102 @@
+@use '../variables' as *;
+
+.dashboard-mission-detail {
+    &.dashboard-mission-detail,
+    .dashboard-header {
+        display: flex;
+        flex-direction: column;
+        gap: 32px;
+
+        .text {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        h1 {
+            color: $white-main;
+        }
+    }
+
+    h2 {
+        font-size: 20px;
+        font-weight: 600;
+        margin-bottom: 16px;
+        color: $white-main;
+    }
+
+    .form-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 16px;
+        width: 100%;
+    }
+
+    .field {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+
+        label {
+            color: $white-muted;
+            font-size: 14px;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            background-color: $black-form-bg;
+            border: 1px solid $ui-border;
+            border-radius: 10px;
+            padding: 12px 14px;
+            color: $white-main;
+            font-family: $font-sans;
+            font-size: 15px;
+            outline: none;
+            transition: border-color .2s ease, box-shadow .2s ease, background-color .2s ease;
+
+            &:focus {
+                border-color: $accent-main;
+                box-shadow: 0 0 0 3px rgba(110, 32, 255, 0.2);
+            }
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+    }
+
+    .field-wide {
+        grid-column: 1 / -1;
+    }
+
+    button.btn-big {
+        width: 100%;
+    }
+}
+
+@media (min-width: 900px) {
+.dashboard-page {
+    .dashboard-header {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .form-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 20px;
+    }
+}
+}
+
+@media (min-width: 1200px) {
+.dashboard-page {
+    .form-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 24px;
+    }
+}
+}
