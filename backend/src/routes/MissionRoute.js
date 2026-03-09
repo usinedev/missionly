@@ -7,7 +7,7 @@ router.get('/user/:id', missionController.getUserMissions)
 
 router.get('/:id', missionController.getById)
 
-router.post('/tags', missionController.getByTags)
+router.get('/tags', missionController.getByTags)
 
 router.get('/:name', missionController.getByName)
 

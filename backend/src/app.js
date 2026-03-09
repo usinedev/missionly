@@ -3,8 +3,10 @@ const AuthRoute = require('./routes/AuthRoute.js')
 const UserRoute = require('./routes/UserRoute.js')
 const MissionRoute = require('./routes/MissionRoute.js')
 const ReviewRoute = require('./routes/ReviewRoute.js')
+const cors = require('cors')
 
 const app = express();
+app.use(cors())
 
 app.use(express.json());
 
