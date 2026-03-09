@@ -200,7 +200,7 @@ const mobileNavItem = {
 
           {isAuthenticated && (
             <motion.div variants={mobileNavItem}>
-              <NavLink to="/dashboard" className={linkClass} onClick={closeMenu}>
+              <NavLink to="/dashboard/home" className={linkClass} onClick={closeMenu}>
                 Dashboard
               </NavLink>
             </motion.div>
