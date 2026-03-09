@@ -44,7 +44,56 @@
         gap: 32px;
 
         .missions-status {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
             width: 100%;
+        }
+
+        // Graphique en camembert
+        .missions-chart {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 32px;
+        }
+
+        .donut {
+        width: 220px;
+        height: 220px;
+        border-radius: 50%;
+        position: relative;
+        aspect-ratio: 1 / 1;
+        }
+
+        .donut::after {
+        content: "";
+        position: absolute;
+        inset: 40px;
+        background: #0b0b0d;
+        border-radius: 50%;
+        }
+
+        .legend {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+
+        li {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #d6d6d6;
+            font-size: 15px;
+        }
+        }
+
+        .legend-color {
+        width: 14px;
+        height: 14px;
+        border-radius: 4px;
+        aspect-ratio: 1 / 1;
         }
 
         .quick-actions {
