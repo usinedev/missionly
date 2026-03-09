@@ -51,10 +51,10 @@ function DashboardHome() {
             <article className="quick-actions dashboard-element">
                 <h3>Action rapides</h3>
                 <div className="btns">
-                    <Button Icon={Plus} iconPosition="left" variant="primary">
-                        Publier une mission
+                    <Button onClick={() => navigate(`/dashboard/missions/create`)} Icon={Plus} iconPosition="left" variant="primary">
+                        Créer une mission
                     </Button>
-                    <Button onClick={() => navigate("/")} Icon={Missions} iconPosition="left" variant="secondary">
+                    <Button onClick={() => navigate("/dashboard/missions")} Icon={Missions} iconPosition="left" variant="secondary">
                         Gérer mes mission
                     </Button>
                     <Button Icon={Candidatures} iconPosition="left" variant="secondary">

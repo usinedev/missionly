@@ -60,7 +60,7 @@ return (
                         : "Éditez tous les paramètres de la mission."}
                 </p>
             </div>
-            <Button size="small">{isCreate ? "Créer" : "Enregistrer"}</Button>
+            <Button size="small">{isCreate ? "Créer la mission" : "Enregistrer"}</Button>
         </section>
 
         <section className="dashboard-element">
@@ -186,7 +186,7 @@ return (
             </div>
         </section>
 
-        <Button>Enregistrer les modifications</Button>
+        <Button>{isCreate ? "Créer la mission" : "Enregistrer les modifications"}</Button>
     </main>
 )
 }
