@@ -43,3 +43,13 @@ User :
 }
 id : 2
 
+{
+    "name" : "Production d'une db",
+    "start" : "13-02-2026",
+    "adress" : "Là-bas",
+    "price" : [180, "euro"],
+    "tags": ["back-end", "dev", "bg"],
+    "user": 2
+}
+id : 1
+

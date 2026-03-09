@@ -17,8 +17,6 @@ const authenticate = async (req, res, next) => {
         console.log(token);
         
         const decoded = jwt.verify(token, process.env.JWT_SECRET || 'secret') 
-        console.log(decoded);
-        console.log("post decoded");
         
         
     
