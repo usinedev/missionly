@@ -1,6 +1,6 @@
 @use '../variables' as *;
 
-.filterBtn {
+.filterBtn, .statusBtn {
     background-color: rgba($color: $white-main, $alpha: 0);
     padding: 12px;
     border: 1px solid $white-main;

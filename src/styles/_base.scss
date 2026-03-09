@@ -6,6 +6,14 @@ body {
     position: relative;
 }
 
+button {
+    cursor: pointer;
+
+    span {
+        white-space: nowrap;
+    }
+}
+
 .no-scroll {
     overflow: hidden;
 }

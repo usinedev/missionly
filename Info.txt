@@ -13,5 +13,33 @@ tags : [tag1, tag2, ...]
 
 
 API : 
+User : 
 login : email, password
-register : email, password
+register : email, password, userName, role, TVAnumber
+
+La route Delete est protégée pour que seul un Admin puisse effacer de la db une Mission
+La route pour soft-delete est un post qui archive la mission (elle n'est plus lié à l'utilisateur et est mise en non publiée)
+
+Mission : 
+Get : 
+user/id : id (de l'utilisateur)
+/id : id (de la mission)
+/name : name (de la mission)
+
+Post : 
+tags : tags (de la mission dans le body)
+create : name, start, adress, price, tags, user (id)
+/id/update : id (de la mission), update (dans le body)
+
+Test : 
+User :
+{
+    "email" : "toto2@gmail.com",
+    "password" : "toto2",
+    "userName" : "TropTaaaaaard",
+    "role": "admin",
+    "TVAnumber": "BE45869",
+    "langage": "FR"
+}
+id : 2
+

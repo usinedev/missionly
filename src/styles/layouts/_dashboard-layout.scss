@@ -1,0 +1,34 @@
+@use '../variables' as *;
+
+body {
+    background-color: $black-main;
+    position: relative;
+
+    .dashboard-page {
+        width: calc(1440px - (252px + (32px * 3)));
+        position: absolute;
+        right: calc(((100vw - 1440px)/2) + 32px);
+        top: 32px;
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        gap: 32px;
+        padding-bottom: 32px;
+    }
+
+    .dashboard-element {
+        border-radius: 16px;
+        background-color: $black-dashboard;
+        border: 1px solid $ui-border;
+        padding: 32px;
+    }
+}
+
+@media (width < 1440px) {
+body {
+    .dashboard-page {
+        width: calc(100vw - (252px + (32px * 3)));
+        right: 32px;
+    }
+}
+}

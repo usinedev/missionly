@@ -1,7 +1,8 @@
-import express from "express";
-import AuthRoutes from "./routes/AuthRoute.js"
-import MissionRoutes from "./routes/MissionRoute.js"
-import ReviewRoutes from './routes/ReviewRoute.js'
+const express = require('express')
+const AuthRoute = require('./routes/AuthRoute.js')
+const UserRoute = require('./routes/UserRoute.js')
+const MissionRoute = require('./routes/MissionRoute.js')
+const ReviewRoute = require('./routes/ReviewRoute.js')
 
 const app = express();
 
@@ -11,10 +12,11 @@ app.get("/", (req, res) => {
     res.json({ message: "Welcome to the Missionly API !"});
 });
 
-app.use('/api/auth', AuthRoutes)
-app.use('/api/mission', MissionRoutes)
-app.use('/api/review', ReviewRoutes)
+app.use('/api/auth', AuthRoute)
+app.use('/api/user', UserRoute)
+app.use('/api/mission', MissionRoute)
+app.use('/api/review', ReviewRoute)
 
 
 
-export default app;
+module.exports = app

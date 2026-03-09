@@ -1,22 +1,22 @@
-function FilterBtn({ selectedCategory, onChange }) {
-    const categories = [
-    { key: "all", label: "Toutes" },
-    { key: "created", label: "Créées" },
-    { key: "published", label: "Publiées" },
-    { key: "started", label: "En cours" },
-    { key: "finished", label: "Terminées" },
+function StatusBtn({ selectedStatus, onChange }) {
+    const status = [
+        { key: "all", label: "Toutes" },
+        { key: "created", label: "Brouillon" },
+        { key: "published", label: "Ouverte" },
+        { key: "started", label: "En cours" },
+        { key: "finished", label: "Terminée" },
     ];
 
   return (
     <div className="filters">
-      {categories.map((cat) => (
+      {status.map((stat) => (
         <button
-          key={cat.key}
+          key={stat.key}
           type="button"
-          className={`${selectedCategory === cat.key ? "active" : ""} filterBtn`}
-          onClick={() => onChange(cat.key)}
+          className={`${selectedStatus === stat.key ? "active" : ""} statusBtn`}
+          onClick={() => onChange(stat.key)}
         >
-          {cat.label}
+          {stat.label}
         </button>
       ))}
     </div>
@@ -24,4 +24,4 @@ function FilterBtn({ selectedCategory, onChange }) {
 }
 
 
-export default FilterBtn
+export default StatusBtn;

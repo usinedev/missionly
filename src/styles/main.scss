@@ -12,6 +12,7 @@
 @use "./components/footer";
 @use "./components/input";
 @use "./components/pill-button";
+@use "./components/sidebar";
 
 /* Layouts */
 @use "./layouts/public-layout";
@@ -21,4 +22,6 @@
 @use "./pages/home";
 @use "./pages/missions";
 @use "./pages/missions-detail";
-@use "./pages/dashboard";
+@use "./pages/dashboard-home";
+@use "./pages/_dashboard-missions";
+@use "./pages/dashboard-mission-detail";
