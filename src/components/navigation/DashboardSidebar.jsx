@@ -15,7 +15,7 @@ function DashboardSidebar() {
             <HomeLogoLink/>
             <SideBarLink destination={"/dashboard/home"} children="Tableau de bord" Icon={Dashboard}/>
             <SideBarLink destination={"/dashboard/missions"} children="Missions" Icon={Missions}/>
-            <SideBarLink destination={"/dashboard/candidacy"} children="Candidatures" Icon={Candidatures}/>
+            {/* <SideBarLink destination={"/dashboard/candidacy"} children="Candidatures" Icon={Candidatures}/> */}
         </div>
 
         <div className="bottom">

@@ -6,13 +6,6 @@
         font-weight: 600;
     }
 
-    .dashboard-element {
-        border-radius: 16px;
-        background-color: $black-dashboard;
-        border: 1px solid $ui-border;
-        padding: 32px;
-    }
-
     section {
         width: 100%;
     }
@@ -62,6 +55,11 @@
 
                 button {
                     width: 100%;
+                    svg {
+                        height: 20px;
+                        width: 20px;
+                    }
+
                     span {
                         white-space: nowrap;
                     }

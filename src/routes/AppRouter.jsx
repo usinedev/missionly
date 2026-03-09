@@ -11,6 +11,7 @@ import DashboardMissions from "@/pages/dashboard/DashboardMissions";
 import DashboardCandidacy from "@/pages/dashboard/DashboardCandidacy";
 import DashboardMyAccount from "@/pages/dashboard/DashboardMyAccount";
 import DashboardMessages from "@/pages/dashboard/DashboardMessages";
+import DashboardMissionDetail from "@/pages/dashboard/DashboardMissionDetail";
 
 function AppRouter() {
   return (
@@ -26,6 +27,7 @@ function AppRouter() {
         <Route path="/dashboard/candidacy" element={<DashboardCandidacy />} />
         <Route path="/dashboard/my-account" element={<DashboardMyAccount />} />
         <Route path="/dashboard/messages" element={<DashboardMessages />} />
+        <Route path="/dashboard/missions/:id" element={<DashboardMissionDetail />} />
       </Route>
     </Routes>
   );

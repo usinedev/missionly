@@ -14,6 +14,13 @@ body {
         align-items: start;
         gap: 32px;
     }
+
+    .dashboard-element {
+        border-radius: 16px;
+        background-color: $black-dashboard;
+        border: 1px solid $ui-border;
+        padding: 32px;
+    }
 }
 
 @media (width < 1440px) {

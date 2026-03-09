@@ -76,6 +76,48 @@
     }
 }
 
+.missionCardDashboard {
+    .missionContent {
+        .missionHead {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: start;
+            gap: 20px;
+
+            .status {
+                font-size: 16px;
+                font-weight: 400;
+                padding: 8px 12px;
+                border-radius: 24px;
+
+                &.created {
+                    background-color: #9D9D9D;
+                    color: #E6E6E6;
+                }
+                &.published {
+                    background-color: #005DAE;
+                    color: #CCE7FF;
+                }
+                &.started {
+                    background-color: #29AE00;
+                    color: #B1FF99;
+                }
+                &.finished {
+                    background-color: #AE0000;
+                    color: #FFCCCC;
+                }
+            }
+            
+            .candidates {
+                font-size: 16px;
+                font-weight: 400;
+                color: $white-muted;
+            }
+        }
+    }
+}
+
 @media (min-width : 1100px) {
 .missionCard {
     flex-direction: row;
