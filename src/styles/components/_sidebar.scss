@@ -12,6 +12,7 @@
     border: 1px solid $ui-border;
     background-color: $black-dashboard;
     border-radius: 16px;
+    z-index: 1000;
 
     button {
         width: 144px;

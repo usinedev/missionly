@@ -13,6 +13,14 @@ body {
         flex-direction: column;
         align-items: start;
         gap: 32px;
+        padding-bottom: 32px;
+    }
+
+    .dashboard-element {
+        border-radius: 16px;
+        background-color: $black-dashboard;
+        border: 1px solid $ui-border;
+        padding: 32px;
     }
 }
 

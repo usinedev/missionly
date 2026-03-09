@@ -16,6 +16,7 @@ export const MISSIONS = [
       durationLabel: "5 jours",
       rateLabel: "400€ / jour",
     },
+    status: "published",
     tags: ["Remote", "Court-Terme", "Junior-Friendly", "React Native", "UI/UX"],
     summary:
       "Arrow-IT recherche un·e développeur·se mobile React Native pour intervenir sur le développement et l’évolution d’une application mobile existante.",
@@ -73,6 +74,7 @@ export const MISSIONS = [
       durationLabel: "10 jours",
       rateLabel: "520€ / jour",
     },
+    status: "started",
     tags: ["Remote", "API", "Node.js", "Express", "SQLite"],
     summary:
       "Mise en place d’une API REST (auth, missions, candidatures) + bonnes pratiques (validation, erreurs, pagination).",
@@ -120,6 +122,7 @@ export const MISSIONS = [
       durationLabel: "8 jours",
       rateLabel: "480€ / jour",
     },
+    status: "finished",
     tags: ["React", "UI", "Accessibilité", "SCSS", "Figma"],
     summary:
       "Intégration d’un mini design system React : boutons, inputs, cards, et états (hover, focus, disabled) + accessibilité.",
@@ -166,6 +169,7 @@ export const MISSIONS = [
       durationLabel: "6 jours",
       rateLabel: "420€ / jour",
     },
+    status: "created",
     tags: ["Figma", "Landing", "Onboarding", "UX", "UI"],
     summary:
       "Refonte légère de la landing + parcours d’onboarding (wireframes, UI, microcopy) pour améliorer la conversion.",
@@ -206,6 +210,7 @@ export const MISSIONS = [
       durationLabel: "4 jours",
       rateLabel: "500€ / jour",
     },
+    status: "published",
     tags: ["Audit", "UX", "SaaS", "Quick wins", "Figma"],
     summary:
       "Audit rapide des parcours clés + liste de quick wins priorisés (impact/effort) + prototypes légers.",
@@ -246,6 +251,7 @@ export const MISSIONS = [
       durationLabel: "7 jours",
       rateLabel: "350€ / jour",
     },
+    status: "started",
     tags: ["Copywriting", "Landing", "Ads", "B2B", "Conversion"],
     summary:
       "Rédaction de variations publicitaires + optimisation landing (structure, USP, preuves, CTA).",
@@ -286,6 +292,7 @@ export const MISSIONS = [
       durationLabel: "9 jours",
       rateLabel: "540€ / jour",
     },
+    status: "finished",
     tags: ["Dashboard", "KPIs", "SQL", "Data viz", "Power BI"],
     summary:
       "Création d’un dashboard KPI (qualité, production, incidents) + extraction SQL + recommandations de visualisation.",
@@ -326,6 +333,7 @@ export const MISSIONS = [
       durationLabel: "14 jours",
       rateLabel: "300€ / jour",
     },
+    status: "created",
     tags: ["Support", "Coordination", "Process", "Notion", "Ops"],
     summary:
       "Mise en place d’un mini process support + suivi tickets + coordination entre équipe produit et clients.",
