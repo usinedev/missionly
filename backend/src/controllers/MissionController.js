@@ -61,27 +61,47 @@ class MissionController {
 
     }
     static async create(req, res) {
-        const { name, start, adress, price, tags, user } = req.body        
-        console.log(name, start, adress, price, tags, user );
-        
+        try {
+            
+            const { name, start, adress, price, tags, user } = req.body        
+            
 
-        const mission = await MissionService.create(
-            name,
-            start,
-            adress,
-            price,
-            tags,
-            user
-        )
-        res.status(200).json(mission)
+            const mission = await MissionService.create(
+                name,
+                start,
+                adress,
+                price,
+                tags,
+                user
+            )
+            res.status(200).json(mission)
+        } catch (error) {
+            res.status(401).json({message: error.message})   
+        }
     }
     static async update(req, res) {
-        const id = req.params.id
-
+        try {
+            const id = req.params.id
+            console.log(id);
+            
+            const allUpdate = req.body
+            console.log(allUpdate);
+            
+            const mission = await MissionService.update(id, allUpdate)
+            res.status(200).json(mission)
+        } catch (error) {
+        res.status(401).json({message: error.message})   
+        }
     }
     static async delete(req, res) {
-        const id = req.params.id
-
+try {
+            const id = req.params.id
+            const allUpdate = req.body
+            const mission = await MissionService.update(id, allUpdate)
+            res.status(200).json(mission)
+        } catch (error) {
+        res.status(401).json({message: error.message})   
+        }
     }
 }
 

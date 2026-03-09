@@ -5,7 +5,9 @@ class MissionService {
     static async getUserMissions(_id){
         const MissionRepository = AppDataSource.getRepository("Mission")
 
-        const missions = await MissionRepository.findBy({user : _id})
+        const missions = await MissionRepository.find({
+            where: {user : {id : _id}}
+        })
         return missions
     }
     static async getById(_id) {
@@ -41,10 +43,25 @@ class MissionService {
         })
         return MissionRepository.save(mission)
     }
-    static async update() {
+    static async update(_id, allUpdate) {
         const MissionRepository = AppDataSource.getRepository("Mission")
 
         
+        const missionUpdate = await MissionRepository.findOne({where : {id: _id}})
+        
+
+        missionUpdate.name = allUpdate.name ?? missionUpdate.name
+        missionUpdate.start = allUpdate.start ?? missionUpdate.start
+        missionUpdate.end = allUpdate.end ?? missionUpdate.end
+        missionUpdate.adress = allUpdate.adress ?? missionUpdate.adress
+        missionUpdate.price = allUpdate.price ?? missionUpdate.price
+        missionUpdate.tags = allUpdate.tags ?? missionUpdate.tags
+        missionUpdate.status = allUpdate.status ?? missionUpdate.status
+
+
+            await MissionRepository.save(missionUpdate)
+
+            return missionUpdate        
     }
     static async delete() {
         const MissionRepository = AppDataSource.getRepository("Mission")
