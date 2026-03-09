@@ -130,7 +130,7 @@ const mobileNavItem = {
 
           {isAuthenticated && (
             <motion.div variants={item}>
-              <NavLink to="/dashboard" className={linkClass}>
+              <NavLink to="/dashboard/home" className={linkClass}>
                 Dashboard
               </NavLink>
             </motion.div>

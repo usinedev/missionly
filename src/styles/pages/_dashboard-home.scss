@@ -1,0 +1,72 @@
+@use '../variables' as *;
+
+.dashboard-page {
+    h1 {
+        font-size: 32px;
+        font-weight: 600;
+    }
+
+    .dashboard-element {
+        border-radius: 32px;
+        background-color: $black-dashboard;
+        border: 1px solid $ui-border;
+        padding: 32px;
+    }
+
+    section {
+        width: 100%;
+    }
+
+    .p {
+        color: $white-muted;
+    }
+
+    .missions-overview {
+        display: flex;
+        gap: 32px;
+
+        article {
+            width: 25%;
+
+            .missionsNumber {
+                font-size: 48px;
+                font-weight: 700;
+                font-family: $font-serif;
+                color: $white-main;
+            }
+        }
+    }
+
+    .dashboard-main-missions {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        gap: 32px;
+
+        .missions-status {
+            width: 100%;
+        }
+
+        .quick-actions {
+            width: fit-content;
+            display: flex;
+            flex-direction: column;
+            align-items: start;
+            gap: 32px;
+
+            .btns {
+                display: flex;
+                flex-direction: column;
+                align-items: start;
+                gap: 24px;
+
+                button {
+                    width: 100%;
+                    span {
+                        white-space: nowrap;
+                    }
+                }
+            }
+        }
+    }
+}

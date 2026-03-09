@@ -2,14 +2,16 @@
 
 .dashboardSidebar {
     position: fixed;
-    top: 0;
-    left: 0;
-    height: 100dvh;
+    top: 32px;
+    left: calc(((100vw - 1440px)/2) + 32px);
+    height: calc(100dvh - (32px * 2));
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     padding: 32px;
-    border-right: 1px solid $ui-border;
+    border: 1px solid $ui-border;
+    background-color: $black-dashboard;
+    border-radius: 32px;
 
     button {
         width: 144px;
@@ -41,7 +43,7 @@
         }
         svg {
             height: 20px;
-            
+
             path {
                 fill: $white-main;
             }
@@ -68,6 +70,31 @@
                 svg path {
                     fill: $white-main;
                 }
+            }
+        }
+    }
+}
+
+@media (width < 1440px) {
+    .dashboardSidebar {
+        left: 32px;
+    }
+}
+
+@media (width < 768px) {
+    .dashboardSidebar {
+        padding: 32px 8px;
+        right: 0;
+        left: unset;
+        border-right: none;
+        border-left: 1px solid $ui-border;
+        button {
+            display: none;
+        }
+        .sidebarLink {
+            padding: 12px;
+            span {
+                display: none;
             }
         }
     }
