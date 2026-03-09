@@ -315,7 +315,7 @@ function Home() {
                     <Button
                         variant="secondary"
                         data-cy="publish-mission-bottom-btn"
-                        onClick={() => (isAuthenticated ? navigate("/dashboard") : openAuth())}
+                        onClick={() => (isAuthenticated ? navigate("dashboard/home") : openAuth())}
                     >
                         Publier une mission
                     </Button>
