@@ -8,9 +8,9 @@ import { useNavigate } from "react-router-dom";
 // Tableau de valeurs de missions (en brute pour l'instant)
 const data = [
     { label: "Brouillons", value: 3, color: "#3B1D7A" },
-    { label: "Missions Ouvertes", value: 2, color: "#8E9AD6" },
-    { label: "Missions en Cours", value: 4, color: "#7B2CFF" },
-    { label: "Missions Terminées", value: 6, color: "#B56AC7" }
+    { label: "Ouvertes", value: 2, color: "#8E9AD6" },
+    { label: "En Cours", value: 4, color: "#7B2CFF" },
+    { label: "Terminées", value: 6, color: "#B56AC7" }
 ];
 
 function DashboardHome() {
@@ -30,15 +30,15 @@ function DashboardHome() {
             </article>
             <article className="dashboard-element">
                 <span className="missionsNumber">{data[1].value}</span>
-                <p className="p">{data[1].label}</p>
+                <p className="p">Missions {data[1].label}</p>
             </article>
             <article className="dashboard-element">
                 <span className="missionsNumber">{data[2].value}</span>
-                <p className="p">{data[2].label}</p>
+                <p className="p">Missions {data[2].label}</p>
             </article>
             <article className="dashboard-element">
                 <span className="missionsNumber">{data[3].value}</span>
-                <p className="p">{data[3].label}</p>
+                <p className="p">Missions {data[3].label}</p>
             </article>
         </section>
 
