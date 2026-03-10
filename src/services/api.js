@@ -138,5 +138,10 @@ export class Api {
         const info = await callApi(finalLink, 'POST', body)
         return info
    }
+   static async getMissionsPublished() {
+        const finalLink = `${apiLink}/mission/published`
+        const info = await callApi(finalLink, 'GET')
+        return info
+   }
 }
 

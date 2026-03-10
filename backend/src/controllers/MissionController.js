@@ -15,14 +15,16 @@ class MissionController {
             res.status(401).json({message: error.message})
         }
     }
-    static async getById(req, res) {
+    static async getById(req, res, next) {
         try {
             
             const id = req.params.id
             if (!id) {
             res.status(401).json({message:"Id must be a number"})
         }
-        
+            if (!Number.isInteger(id)) {
+                next()
+            }        
         const missions = await MissionService.getById(id)
 
         res.status(200).json(missions)
@@ -107,6 +109,16 @@ try {
             res.status(200).json(mission)
         } catch (error) {
         res.status(401).json({message: error.message})   
+        }
+    }
+    static async getPublished(req, res) {
+        try {
+            const mission = await MissionService.getPublished()
+            console.log("controlleur");
+            
+            res.status(200).json(mission)
+        } catch (error) {
+            res.status(401).json({message: error.message})   
         }
     }
 }

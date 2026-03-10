@@ -21,11 +21,11 @@ function MissionCard({ mission, index = 0 }) {
       viewport={{ once: true, amount: 0.2 }}
     >
       <Link to={`/missions/${mission.id}`} className="missionCard">
-        <span className="companyLogo">{mission.company.name.slice(0, 1)}</span>
+        <span className="companyLogo">{mission.user.userName.slice(0, 1)}</span>
 
         <div className="missionContent">
-          <p className="missionTitle">{mission.title}</p>
-          <p className="missionCompany">{mission.company.name}</p>
+          <p className="missionTitle">{mission.name}</p>
+          <p className="missionCompany">{mission.user.userName}</p>
 
           <div className="missionFilters">
             {mission.tags.map((tag, i) => (
@@ -37,14 +37,14 @@ function MissionCard({ mission, index = 0 }) {
 
           <p className="locationAndStart">
             <span className="location">
-              {mission.meta.remote ? "Remote" : mission.company.location}
+              {mission.adress}
             </span>{" "}
-            • <span className="startDate">{mission.meta.startDateLabel}</span>
+            • <span className="startDate">{mission.start}</span>
           </p>
 
           <p className="salaryAndDuration">
-            <span className="salary">{mission.meta.rateLabel}</span> •{" "}
-            <span className="duration">{mission.meta.durationLabel}</span>
+            <span className="salary">{mission.price[0]} {mission.price[1]}</span> •{" "}
+            <span className="duration">{mission.end}</span>
           </p>
         </div>
       </Link>

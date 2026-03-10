@@ -8,6 +8,7 @@ import Button from '../../components/ui/Button';
 import ArrowLeft from "@/assets/icons/ArrowLeft.svg?react";
 import ArrowRight from "@/assets/icons/ArrowRight.svg?react";
 import { motion, AnimatePresence } from 'motion/react';
+import { Api } from '@/services/api';
 
 function Missions() {
     const [query, setQuery] = useState("");
@@ -15,44 +16,56 @@ function Missions() {
     const [selectedCategory, setSelectedCategory] = useState("all");
     const [page, setPage] = useState(1);
     const PER_PAGE = 6;
+    const [missions, setMissions] = useState([])
 
-    const missions = getMissions();
+    useEffect(()=>{
+        async function getMissions() {
+            const missions = await Api.getMissionsPublished();
+            console.log(missions);
+            setMissions(missions)
+        }
+        getMissions()
+    }, [])
 
-    function normalizeString(str) {
-    return str
-        .normalize("NFD")
-        .replace(/[\u0300-\u036f]/g, "")
-        .toLowerCase();
-    }
+    
 
-    useEffect(() => {
-        const q = searchParams.get("q");
-        if (q !== null) setQuery(q);
-    }, [searchParams]);
+    // function normalizeString(str) {
+    // return str
+    //     .normalize("NFD")
+    //     .replace(/[\u0300-\u036f]/g, "")
+    //     .toLowerCase();
+    // }
 
-    const filteredMissions = useMemo(() => {
-        return missions.filter((mission) => {
-        const matchCategory =
-            selectedCategory === "all" || mission.category === selectedCategory;
+    // useEffect(() => {
+    //     const q = searchParams.get("q");
+    //     if (q !== null) setQuery(q);
+    // }, [searchParams]);
 
-        const matchQuery = normalizeString(mission.title).includes(normalizeString(query));
+    const filteredMissions = missions
+    // useMemo(() => {
+    //     return missions.filter((mission) => {
+    //     const matchCategory =
+    //         selectedCategory === "all" || mission.category === selectedCategory;
 
-        return matchCategory && matchQuery;
-        });
-    }, [missions, selectedCategory, query]);
+    //     const matchQuery = normalizeString(mission.title).includes(normalizeString(query));
 
-    useEffect(() => {
-        setPage(1);
-    }, [query, selectedCategory]);
+    //     return matchCategory && matchQuery;
+    //     });
+    // }, [missions, selectedCategory, query]);
 
-    const totalPages = useMemo(() => {
-        return Math.max(1, Math.ceil(filteredMissions.length / PER_PAGE));
-    }, [filteredMissions.length]);
+    // useEffect(() => {
+    //     setPage(1);
+    // }, [query, selectedCategory]);
 
-    const pageMissions = useMemo(() => {
-        const start = (page - 1) * PER_PAGE;
-        return filteredMissions.slice(start, start + PER_PAGE);
-    }, [filteredMissions, page]);
+    // const totalPages = useMemo(() => {
+    //     return Math.max(1, Math.ceil(filteredMissions.length / PER_PAGE));
+    // }, [filteredMissions.length]);
+
+    // const pageMissions = useMemo(() => {
+    //     const start = (page - 1) * PER_PAGE;
+    //     return filteredMissions.slice(start, start + PER_PAGE);
+    // }, [filteredMissions, page]);
+    let totalPages = 6
 
     const isFirstPage = page <= 1;
     const isLastPage = page >= totalPages;
@@ -190,7 +203,7 @@ function Missions() {
                 </motion.div>
 
                 <div className="resultsCards">
-                    {pageMissions.map((mission) => (
+                    {missions.map((mission) => (
                         <MissionCard key={mission.id} mission={mission} />
                     ))}
                 </div>

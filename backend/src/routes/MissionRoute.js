@@ -5,9 +5,11 @@ const missionController = require('../controllers/MissionController.js')
 
 router.get('/user/:id', missionController.getUserMissions)
 
-router.get('/:id', missionController.getById)
+router.get('/published', missionController.getPublished)
 
 router.get('/tags', missionController.getByTags)
+
+router.get('/:id', missionController.getById)
 
 router.get('/:name', missionController.getByName)
 

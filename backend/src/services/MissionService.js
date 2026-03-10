@@ -84,7 +84,17 @@ class MissionService {
     }
     static async delete() {
         const MissionRepository = AppDataSource.getRepository("Mission")
-
+    }
+    static async getPublished() {
+        const MissionRepository = AppDataSource.getRepository("Mission")
+        const missions = await MissionRepository.find(
+            {where : {status: "published"}
+            , relations:{description : true, user : true}
+        }
+        )
+        console.log("service");
+        
+        return missions
     }
 }
 
