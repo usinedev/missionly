@@ -63,7 +63,7 @@ class MissionController {
     static async create(req, res) {
         try {
             
-            const { name, start, adress, price, tags, user } = req.body        
+            const { name, start, adress, price, tags, user, summary, context, goals, skills, desiredProfile, conditions } = req.body        
             
 
             const mission = await MissionService.create(
@@ -72,7 +72,13 @@ class MissionController {
                 adress,
                 price,
                 tags,
-                user
+                user,
+                summary, 
+                context, 
+                goals, 
+                skills, 
+                desiredProfile, 
+                conditions
             )
             res.status(200).json(mission)
         } catch (error) {
