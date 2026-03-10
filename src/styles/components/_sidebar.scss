@@ -85,10 +85,10 @@
 @media (width < 768px) {
     .dashboardSidebar {
         padding: 32px 8px;
-        right: 0;
+        left: 0;
         left: unset;
-        border-right: none;
-        border-left: 1px solid $ui-border;
+        border-left: none;
+        border-right: 1px solid $ui-border;
         button {
             display: none;
         }
