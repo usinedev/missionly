@@ -15,7 +15,6 @@ const data = [
 
 function DashboardHome() {
   const navigate = useNavigate();
-
   return (
     <main className="dashboard-page dashboard-home">
         <section className="dashboard-header dashboard-element">
