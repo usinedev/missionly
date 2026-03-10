@@ -113,3 +113,43 @@
         }
     }
 }
+
+@media (width < 768px) {
+    body .dashboard-page {
+        left: 0;
+        margin-left: 75px;
+        width: calc(100vw - 90px);
+
+        .dashboard-header {
+            width: 100%;
+        }
+
+        .missions-overview {
+            display: none;
+        }
+
+        .dashboard-main-missions {
+            flex-direction: column;
+
+            .quick-actions {
+                width: 100%;
+                align-items: center;
+            }
+            
+            .missions-chart {
+                flex-direction: column;
+                gap: 16px;
+
+                .legend {
+                    flex-direction: row;
+                    flex-wrap: wrap;
+                    justify-content: center;
+
+                    li {
+                        font-size: 16px;
+                    }
+                }
+            }
+        }
+    }
+}

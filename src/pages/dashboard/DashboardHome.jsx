@@ -44,7 +44,6 @@ function DashboardHome() {
         <section className="dashboard-main-missions">
             <article className="missions-status dashboard-element">
                 <h3>Statut des missions</h3>
-
                 <MissionStatusChart data={data}/>
             </article>
             <article className="quick-actions dashboard-element">
