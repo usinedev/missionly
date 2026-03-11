@@ -1,4 +1,5 @@
-const { EntitySchema } = require("typeorm");
+const { type } = require("node:os");
+const { EntitySchema, JoinTable } = require("typeorm");
 
 module.exports = new EntitySchema({
     name : "Mission",
@@ -33,10 +34,6 @@ module.exports = new EntitySchema({
             type : "simple-array", // [priceNumber, priceUnity],
             nullable : false
         },
-        tags : {
-            type : "simple-array",
-            nullable : true
-        },
         status : { // created, published, started, finished
             type: "varchar",
             nullable: false,
@@ -54,7 +51,15 @@ module.exports = new EntitySchema({
             target : 'Description',
             type: 'one-to-one',
             inverseSide : 'mission',
-            nullable: true
+            nullable: false
+        },
+        tag : {
+            target: 'Tag',
+            type: "many-to-many",
+            nullable : false,
+            JoinTable: true,
+            inverseSide: "missions"
+
         }
     }
 })

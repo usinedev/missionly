@@ -5,30 +5,43 @@ class MissionService {
     static async getUserMissions(_id){
         const MissionRepository = AppDataSource.getRepository("Mission")
 
-        const missions = await MissionRepository.find({
-            where: {user : {id : _id}}, relations: {description : true}
+        let missions = await MissionRepository.find({
+            where: {user : {id : _id}}, relations: {description : true, user: true}
         })
+        
+        missions = missions.map((mission)=>{
+            
+            mission.user.password = ""
+            
+            return mission
+        })
+        
         return missions
     }
     static async getById(_id) {
         const MissionRepository = AppDataSource.getRepository("Mission")
 
-        const mission = await MissionRepository.findOne({where : { id : _id}, relations: {description : true}})    
-        
+        const mission = await MissionRepository.findOne({where : { id : _id}, relations: {description : true, user: true, tag: true}})    
+        mission.user.password = ""
+
         return mission
     }
     static async getByTags(tags) {
         const MissionRepository = AppDataSource.getRepository("Mission")
 
 
-        const missions = MissionRepository.find({where : {tags : ArrayContains(tags)}, relations: {description : true}})
+        const missions = MissionRepository.find({where : {tags : ArrayContains(tags)}, relations: {description : true, user: true, tag: true}})
+        missions.user.password = ""
+
         return missions
 
     }
     static async getByName(name) {
         const MissionRepository = AppDataSource.getRepository("Mission")
 
-        const mission = await MissionRepository.findOne({where : { name : name}, relations: {description : true}})
+        const mission = await MissionRepository.findOne({where : { name : name},relations: {description : true, user: true, tag: true}})
+        mission.user.password = ""
+
         return mission
     }
     static async create(name, start, adress, price, tags, user, summary, context, goals, skills, desiredProfile, conditions) {
@@ -58,7 +71,7 @@ class MissionService {
         const MissionRepository = AppDataSource.getRepository("Mission")
         const DescriptionRepository = AppDataSource.getRepository("Description")
 
-        const missionUpdate = await MissionRepository.findOne({where : {id: _id}, relations : {description : true}})
+        const missionUpdate = await MissionRepository.findOne({where : {id: _id}, relations: {description : true, user: true, tag: true}})
 
         missionUpdate.name = allUpdate.name ?? missionUpdate.name
         missionUpdate.start = allUpdate.start ?? missionUpdate.start
@@ -79,7 +92,7 @@ class MissionService {
         await DescriptionRepository.save(missionUpdate.description)
     }
             await MissionRepository.save(missionUpdate)
-
+            missionUpdate.user.password = ""
             return missionUpdate        
     }
     static async delete() {
