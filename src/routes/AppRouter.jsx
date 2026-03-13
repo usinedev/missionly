@@ -9,7 +9,7 @@ import MissionDetail from "../pages/public/MissionDetail";
 import DashboardHome from "../pages/dashboard/DashboardHome";
 import DashboardMissions from "@/pages/dashboard/DashboardMissions";
 import DashboardCandidacy from "@/pages/dashboard/DashboardCandidacy";
-import DashboardMyAccount from "@/pages/dashboard/DashboardMyAccount";
+import DashboardMyAccount from "@/pages/dashboard/DashboardAccount";
 import DashboardMessages from "@/pages/dashboard/DashboardMessages";
 import DashboardMissionDetail from "@/pages/dashboard/DashboardMissionDetail";
 

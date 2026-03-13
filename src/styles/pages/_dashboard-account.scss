@@ -1,0 +1,210 @@
+@use "../variables" as *;
+
+.dashboard-account {
+
+    .account-layout {
+        display: flex;
+        gap: 32px;
+        width: 100%;
+        align-items: flex-start;
+    }
+
+    article {
+        background: rgba(255,255,255,0.03);
+        border: 1px solid rgba(255,255,255,0.08);
+        border-radius: 16px;
+        padding: 32px;
+    }
+
+    h3 {
+        font-size: 20px;
+        font-weight: 600;
+        margin-bottom: 24px;
+    }
+
+    /* PROFIL */
+
+    .profile-card {
+        width: 280px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 16px;
+
+        .avatar {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            background: linear-gradient(135deg,#7c3aed,#d946ef);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            font-weight: 700;
+        }
+
+        h2 {
+            font-size: 18px;
+        }
+
+        button {
+            margin-top: 10px;
+            font-size: 14px;
+            padding: 8px 16px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 6px;
+            color: $white-main;
+            cursor: pointer;
+            transition: 0.2s;
+
+            &:hover {
+                background: rgba(255,255,255,0.08);
+            }
+        }
+    }
+
+    .form-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 24px;
+    }
+
+    .input-group {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+
+        label {
+            font-size: 14px;
+            color: $white-muted;
+            font-weight: 500;
+        }
+
+        .input {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: #0b0b0d;
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 8px;
+            padding: 10px 14px;
+            transition: border 0.2s;
+
+            svg {
+                width: 18px;
+                height: 18px;
+                color: $white-muted;
+            }
+
+            input {
+                background: transparent;
+                border: none;
+                outline: none;
+                width: 100%;
+                color: $white-main;
+                font-size: 14px;
+            }
+            &:focus-within {
+                border: 1px solid #7c3aed;
+            }
+        }
+    }
+
+    .input-group.full {
+        grid-column: span 2;
+    }
+
+    /* Securité */
+    .account-security {
+        display: flex;
+        flex-direction: column;
+        gap: 28px;
+        padding: 36px;
+
+        h3 {
+            margin-bottom: 4px;
+        }
+
+        .security-form {
+            display: flex;
+            flex-direction: column;
+            gap: 22px;
+            width: 100%;
+        }
+
+        .input-form {
+            display: flex;
+            flex-direction: column;
+            padding: 16px;
+            gap: 8px;
+            border-radius: 12px;
+
+            label {
+                font-size: 13px;
+                color: $white-muted;
+                font-weight: 500;
+            }
+            .input {
+                width: 100%;
+            }
+        }
+
+        .security-actions {
+            display: flex;
+            justify-content: center;
+            margin-top: 6px;
+        }
+
+        button {
+            padding: 10px 22px;
+            background: linear-gradient(135deg,#7c3aed,#9333ea);
+            border-radius: 8px;
+            border: none;
+            color: white;
+            font-weight: 500;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+
+            &:hover {
+                transform: translateY(-1px);
+                box-shadow: 0 0 12px rgba(124,58,237,0.15);
+            }
+        }
+    }
+}
+
+/* RESPONSIVE */
+@media (width < 768px) {
+
+  .dashboard-account {
+
+    .account-layout {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .profile-card,
+    .account-info {
+        width: 100%;
+
+        h3 {
+            text-align: center;
+        }
+    }
+
+    .account-security {
+        width: 100%;
+        text-align: center;
+    }
+    
+    .form-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .input-group.full {
+      grid-column: span 1;
+    }
+  }
+}
