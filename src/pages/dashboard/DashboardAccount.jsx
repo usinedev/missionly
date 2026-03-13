@@ -1,4 +1,4 @@
-import "../../styles/pages/_dashboard-account.scss"
+import "@/styles/pages/_dashboard-account.scss"
 import { useNavigate } from "react-router-dom";
 import { User, Mail, Building, Lock } from "lucide-react"
 
@@ -7,7 +7,7 @@ function DashboardAccount() {
 
   return (
     <main className="dashboard-page dashboard-account">
-      <section className="dashboard-header">
+      <section className="dashboard-header dashboard-element">
         <h1>Mon compte</h1>
         <p className="p">
           Gérez vos informations personnelles et la sécurité de votre compte.
@@ -17,7 +17,7 @@ function DashboardAccount() {
       <section className="account-layout">
 
         {/* Profile */}
-        <article className="profile-card">
+        <section className="profile-card dashboard-element">
           <div className="avatar">
             J
           </div>
@@ -27,10 +27,10 @@ function DashboardAccount() {
           <button className="btn-secondary">
             Modifier la photo
           </button>
-        </article>
+        </section>
 
         {/* Informations */}
-        <article className="account-info">
+        <section className="account-info dashboard-element">
           <h3>Informations personnelles</h3>
           
           <div className="form-grid">
@@ -58,10 +58,10 @@ function DashboardAccount() {
               </div>
             </div>
           </div>
-        </article>
+        </section>
 
         {/* Securité */}
-        <article className="account-security">
+        <section className="account-security dashboard-element">
           <h3>Sécurité</h3>
 
           <div className="security-form">
@@ -85,7 +85,7 @@ function DashboardAccount() {
           <div className="security-actions">
             <button>Sauvegarder</button>
           </div>
-        </article>
+        </section>
       </section>
     </main>
   )

@@ -22,8 +22,7 @@
         margin-bottom: 24px;
     }
 
-    /* PROFIL */
-
+    /* Profil */
     .profile-card {
         width: 280px;
         display: flex;
@@ -64,55 +63,58 @@
         }
     }
 
-    .form-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 24px;
-    }
-
-    .input-group {
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
-
-        label {
-            font-size: 14px;
-            color: $white-muted;
-            font-weight: 500;
+    /* Informations */
+    .account-info {
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
         }
 
-        .input {
+        .input-group {
             display: flex;
-            align-items: center;
-            gap: 10px;
-            background: #0b0b0d;
-            border: 1px solid rgba(255,255,255,0.08);
-            border-radius: 8px;
-            padding: 10px 14px;
-            transition: border 0.2s;
+            flex-direction: column;
+            gap: 8px;
 
-            svg {
-                width: 18px;
-                height: 18px;
-                color: $white-muted;
-            }
-
-            input {
-                background: transparent;
-                border: none;
-                outline: none;
-                width: 100%;
-                color: $white-main;
+            label {
                 font-size: 14px;
+                color: $white-muted;
+                font-weight: 500;
             }
-            &:focus-within {
-                border: 1px solid #7c3aed;
+
+            .input {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                background: #0b0b0d;
+                border: 1px solid rgba(255,255,255,0.08);
+                border-radius: 8px;
+                padding: 10px 14px;
+                transition: border 0.2s;
+
+                svg {
+                    width: 18px;
+                    height: 18px;
+                    color: $white-muted;
+                }
+
+                input {
+                    background: transparent;
+                    border: none;
+                    outline: none;
+                    width: 100%;
+                    color: $white-main;
+                    font-size: 14px;
+                }
+                &:focus-within {
+                    border: 1px solid #7c3aed;
+                }
             }
         }
-    }
 
-    .input-group.full {
-        grid-column: span 2;
+        .input-group.full {
+            grid-column: span 2;
+        }
     }
 
     /* Securité */
@@ -175,7 +177,7 @@
     }
 }
 
-/* RESPONSIVE */
+/* Responsive */
 @media (width < 768px) {
 
   .dashboard-account {
